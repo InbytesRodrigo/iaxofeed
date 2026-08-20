@@ -308,24 +308,26 @@ a { text-decoration: none; color: inherit; }
    RESPONSIVE - MOBILE APP-LIKE
    ========================================== */
 @media (max-width: 768px) {
+    /* Full app feel */
+    body { overflow: hidden; height: 100vh; height: 100dvh; }
+    .panel-layout { height: 100vh; height: 100dvh; }
+    .main-content { overflow-y: auto; -webkit-overflow-scrolling: touch; height: 100vh; height: 100dvh; }
+    
     /* Bottom nav visible */
     .panel-bottom-nav { display: flex; }
     .main-content { padding-bottom: 70px; }
     .page-content { padding-bottom: 20px; }
     
-    /* Sidebar slides in as overlay */
-    .sidebar {
-        transform: translateX(-100%);
-        width: 280px;
-        box-shadow: 4px 0 30px rgba(0,0,0,0.5);
-    }
-    .sidebar.open { transform: translateX(0); }
+    /* Sidebar completely hidden on mobile */
+    .sidebar { display: none !important; }
     .main-content { margin-left: 0; }
-    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+    .menu-toggle { display: none !important; }
     
-    /* Topbar compact */
-    .topbar { padding: 12px 16px; }
-    .page-title { font-size: 18px; }
+    /* Topbar compact - app header */
+    .topbar { padding: 12px 16px; padding-top: calc(env(safe-area-inset-top, 0px) + 12px); justify-content: center; }
+    .topbar-left { justify-content: center; width: 100%; }
+    .topbar-right { display: none; }
+    .page-title { font-size: 18px; text-align: center; }
     .search-bar { display: none; }
     
     /* Page content */

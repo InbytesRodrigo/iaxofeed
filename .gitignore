@@ -4,3 +4,6 @@ node_modules/
 auth-export.json
 firebase-debug.log
 scripts/seed.js
+generate-icons.js
+package*.json
+.netlify/

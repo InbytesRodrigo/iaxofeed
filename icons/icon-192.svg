@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050510"/>
+      <stop offset="100%" style="stop-color:#10102A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6C3CE1"/>
+      <stop offset="100%" style="stop-color:#06D6A0"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="40" fill="url(#bg)"/>
+  <rect x="8" y="8" width="176" height="176" rx="36" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.3"/>
+  <g transform="translate(96,88)">
+    <polygon points="0,-38 8,-10 38,-10 14,8 22,36 0,20 -22,36 -14,8 -38,-10 -8,-10" fill="url(#accent)" opacity="0.9"/>
+    <circle cx="0" cy="-2" r="14" fill="#050510" opacity="0.6"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="white">I</text>
+  </g>
+  <text x="96" y="148" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="white">IAXO</text>
+  <text x="96" y="168" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="400" fill="#06D6A0">Feed</text>
+</svg>

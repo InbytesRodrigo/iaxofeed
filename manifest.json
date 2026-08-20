@@ -1,0 +1,42 @@
+{
+    "name": "IAXO Feed - Gestão de Tráfego Inteligente",
+    "short_name": "IAXO Feed",
+    "description": "Plataforma completa de gestão de tráfego com IA. Gere leads qualificados no WhatsApp.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#050510",
+    "theme_color": "#050510",
+    "scope": "/",
+    "lang": "pt-BR",
+    "categories": ["business", "productivity"],
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Dashboard",
+            "short_name": "Home",
+            "url": "/pages/admin.html",
+            "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Login",
+            "short_name": "Login",
+            "url": "/pages/login.html",
+            "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+        }
+    ]
+}
