@@ -1,7 +1,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 .user-badge{background:var(--gradient-2)!important}
 .welcome-banner{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;position:relative;overflow:hidden}
-.welcome-banner::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(circle at 80% 50%,rgba(108,60,225,0.12),transparent 70%)}
+.welcome-banner::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(circle at 80% 50%,rgba(255,107,44,0.12),transparent 70%)}
 .welcome-text h2{font-size:22px;margin-bottom:6px}
 .welcome-text p{color:var(--text-secondary);font-size:14px}
 .welcome-illustration{font-size:42px;color:var(--primary-light);opacity:.4}
@@ -15,7 +15,7 @@
    ========================================== */
 .campaigns-grid-compact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .ccard{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s}
-.ccard:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 24px rgba(108,60,225,0.12)}
+.ccard:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 24px rgba(255,107,44,0.12)}
 .ccard.learning-card{border-color:rgba(255,179,71,0.2)}
 .ccard-media{height:160px;position:relative;display:flex;align-items:center;justify-content:center;padding:14px}
 .ccard-badge{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:5px}
@@ -63,26 +63,26 @@
 .rf-section-head h3{font-size:16px;font-weight:700}
 .rf-sub{font-size:12px;color:var(--text-muted)}
 
-/* Step 1 - Dados - Purple */
-.rf-section:nth-child(1) { border: 1px solid rgba(108,60,225,0.25); }
-.rf-section:nth-child(1)::before { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
-.rf-section:nth-child(1) .rf-num { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
-.rf-section:nth-child(1) .rf-section-head h3 { color: var(--primary-light); }
+/* Step 1 - Dados - Laranja vibrante */
+.rf-section:nth-child(1) { border: 1px solid rgba(255,107,44,0.35); background: linear-gradient(135deg, rgba(255,107,44,0.06), var(--bg-card)); }
+.rf-section:nth-child(1)::before { background: linear-gradient(90deg, #FF6B2C, #FFB347); }
+.rf-section:nth-child(1) .rf-num { background: linear-gradient(135deg, #FF6B2C, #FFB347); }
+.rf-section:nth-child(1) .rf-section-head h3 { color: #FF8F5E; }
 
-/* Step 2 - Midia - Green */
-.rf-section:nth-child(2) { border: 1px solid rgba(6,214,160,0.25); }
-.rf-section:nth-child(2)::before { background: linear-gradient(90deg, var(--secondary), #0ED994); }
-.rf-section:nth-child(2) .rf-num { background: linear-gradient(135deg, var(--secondary), #0ED994); }
-.rf-section:nth-child(2) .rf-section-head h3 { color: var(--secondary); }
+/* Step 2 - Midia - Ciano vibrante */
+.rf-section:nth-child(2) { border: 1px solid rgba(0,210,211,0.35); background: linear-gradient(135deg, rgba(0,210,211,0.06), var(--bg-card)); }
+.rf-section:nth-child(2)::before { background: linear-gradient(90deg, #00D2D3, #48DBFB); }
+.rf-section:nth-child(2) .rf-num { background: linear-gradient(135deg, #00D2D3, #48DBFB); }
+.rf-section:nth-child(2) .rf-section-head h3 { color: #00D2D3; }
 
-/* Step 3 - Targeting - Orange */
-.rf-section:nth-child(3) { border: 1px solid rgba(255,179,71,0.25); }
-.rf-section:nth-child(3)::before { background: linear-gradient(90deg, #FFB347, #FFCC80); }
-.rf-section:nth-child(3) .rf-num { background: linear-gradient(135deg, #FFB347, #FFCC80); }
-.rf-section:nth-child(3) .rf-section-head h3 { color: #FFB347; }
+/* Step 3 - Targeting - Magenta vibrante */
+.rf-section:nth-child(3) { border: 1px solid rgba(255,69,87,0.35); background: linear-gradient(135deg, rgba(255,69,87,0.06), var(--bg-card)); }
+.rf-section:nth-child(3)::before { background: linear-gradient(90deg, #FF4757, #FF6B81); }
+.rf-section:nth-child(3) .rf-num { background: linear-gradient(135deg, #FF4757, #FF6B81); }
+.rf-section:nth-child(3) .rf-section-head h3 { color: #FF6B81; }
 
-/* Step 4 - WhatsApp - Green WhatsApp */
-.rf-section:nth-child(4) { border: 1px solid rgba(37,211,102,0.25); }
+/* Step 4 - WhatsApp - Verde WhatsApp */
+.rf-section:nth-child(4) { border: 1px solid rgba(37,211,102,0.35); background: linear-gradient(135deg, rgba(37,211,102,0.06), var(--bg-card)); }
 .rf-section:nth-child(4)::before { background: linear-gradient(90deg, #25D366, #128C7E); }
 .rf-section:nth-child(4) .rf-num { background: linear-gradient(135deg, #25D366, #128C7E); }
 .rf-section:nth-child(4) .rf-section-head h3 { color: #25D366; }
@@ -92,13 +92,13 @@
 /* Media Mode Toggle */
 .media-mode-toggle{display:flex;gap:10px;margin-bottom:16px}
 .mm-option{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-secondary);transition:.3s;background:var(--bg-card)}
-.mm-option:has(input:checked){border-color:var(--primary);color:var(--primary-light);background:rgba(108,60,225,0.06)}
+.mm-option:has(input:checked){border-color:var(--primary);color:var(--primary-light);background:rgba(255,107,44,0.06)}
 .mm-option input{display:none}
 
 /* Upload */
 .upload-area{position:relative}
 .mu-dropzone{border:2px dashed var(--border);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:.3s;display:flex;flex-direction:column;align-items:center;gap:6px}
-.mu-dropzone:hover,.mu-dropzone.dragover{border-color:var(--primary);background:rgba(108,60,225,0.04)}
+.mu-dropzone:hover,.mu-dropzone.dragover{border-color:var(--primary);background:rgba(255,107,44,0.04)}
 .mu-dropzone i{font-size:28px;color:var(--primary-light)}
 .mu-dropzone span{font-size:13px;color:var(--text-secondary)}
 .mu-sub{font-size:11px!important;color:var(--text-muted)!important}
@@ -108,7 +108,7 @@
 .mp-content button{background:none;border:none;color:var(--text-muted);cursor:pointer}
 
 /* Generate Area */
-.generate-area{padding:20px;background:rgba(108,60,225,0.04);border:1px solid rgba(108,60,225,0.12);border-radius:12px}
+.generate-area{padding:20px;background:rgba(255,107,44,0.04);border:1px solid rgba(255,107,44,0.12);border-radius:12px}
 .gen-info{display:flex;gap:14px;align-items:center;margin-bottom:16px}
 .gen-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0}
 .gen-info strong{font-size:14px;display:block}
@@ -120,14 +120,33 @@
 .tg-group .form-label{display:flex;align-items:center;gap:6px}
 .tg-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .tg-chip{padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-secondary);cursor:pointer;transition:.3s;background:var(--bg-card);display:inline-flex;align-items:center;gap:5px}
-.tg-chip:has(input:checked),.tg-chip.active{border-color:var(--primary);color:var(--primary-light);background:rgba(108,60,225,0.08)}
-.tg-chip:hover{border-color:var(--primary)}
+.tg-chip:has(input:checked),.tg-chip.active{border-color:var(--primary);color:var(--primary-light);background:rgba(255,107,44,0.1);font-weight:600}
+.tg-chip:hover{border-color:var(--primary);background:rgba(255,107,44,0.05)}
 .tg-chip input{display:none}
+
+/* Colorful selects per step */
+.rf-section:nth-child(1) select.form-input:focus{border-color:#FF6B2C;box-shadow:0 0 0 3px rgba(255,107,44,0.2)}
+.rf-section:nth-child(2) select.form-input:focus{border-color:#00D2D3;box-shadow:0 0 0 3px rgba(0,210,211,0.2)}
+.rf-section:nth-child(3) select.form-input:focus{border-color:#FF4757;box-shadow:0 0 0 3px rgba(255,69,87,0.2)}
+.rf-section:nth-child(4) select.form-input:focus{border-color:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,0.2)}
+
+/* Colorful inputs per step */
+.rf-section:nth-child(1) .form-input:focus{border-color:#FF6B2C;box-shadow:0 0 0 3px rgba(255,107,44,0.15)}
+.rf-section:nth-child(2) .form-input:focus{border-color:#00D2D3;box-shadow:0 0 0 3px rgba(0,210,211,0.15)}
+.rf-section:nth-child(3) .form-input:focus{border-color:#FF4757;box-shadow:0 0 0 3px rgba(255,69,87,0.15)}
+.rf-section:nth-child(4) .form-input:focus{border-color:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,0.15)}
+
+/* Colorful chips per step */
+.rf-section:nth-child(3) .tg-chip:has(input:checked),.rf-section:nth-child(3) .tg-chip.active{border-color:#FF4757;color:#FF6B81;background:rgba(255,69,87,0.1)}
+.rf-section:nth-child(3) .tg-chip:hover{border-color:#FF4757}
+
+/* Select dropdown styling */
+.form-input[type="select"],select.form-input{cursor:pointer;background-color:var(--bg-card)}
 .tg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tg-group.half{margin-bottom:0}
 
 /* Resumo */
-.rf-resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;padding:18px;background:rgba(108,60,225,0.04);border:1px solid rgba(108,60,225,0.12);border-radius:12px}
+.rf-resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;padding:18px;background:rgba(255,107,44,0.04);border:1px solid rgba(255,107,44,0.12);border-radius:12px}
 .rf-resumo-item{display:flex;align-items:center;gap:8px}
 .rf-resumo-item i{color:var(--primary-light);font-size:16px}
 .rf-resumo-item strong{font-size:12px;display:block}
@@ -145,7 +164,7 @@
 @keyframes leadHighlight{0%{background:rgba(6,214,160,0.08)}100%{background:transparent}}
 .recent-leads{display:flex;flex-direction:column}
 .recent-lead{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid rgba(42,42,74,0.3);transition:.3s}
-.recent-lead:hover{background:rgba(108,60,225,0.04)}
+.recent-lead:hover{background:rgba(255,107,44,0.04)}
 .lead-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0}
 .lead-info{flex:1}
 .lead-info strong{font-size:13px;display:block}
