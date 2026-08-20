@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#050510">
     <link rel="manifest" href="../manifest.json">
     <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-    <title>Painel Admin - IAXO Feed</title>
+    <title>Painel Admin - IAXO Ads</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/panel.css">
@@ -19,7 +19,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="../index.html" class="sidebar-logo">
-                    <span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Feed</span>
+                    <span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Ads</span>
                 </a>
                 <span class="sidebar-badge">ADMIN</span>
             </div>
@@ -56,9 +56,9 @@
             </nav>
             <div class="sidebar-footer">
                 <div class="admin-avatar">
-                    <div class="avatar-circle">AD</div>
+                    <div class="avatar-circle" id="adminAvatar" onclick="document.getElementById('adminAvatarUpload').click()" title="Clique para trocar foto"><span id="adminAvatarText">AD</span></div><input type="file" id="adminAvatarUpload" accept="image/*" style="display:none" onchange="handleAdminAvatarUpload(this)">
                     <div>
-                        <div class="admin-name">Admin IAXO</div>
+                        <div class="admin-name" id="sidebarAdminName">Admin IAXO</div>
                         <div class="admin-role">Super Administrador</div>
                     </div>
                 </div>
@@ -873,7 +873,7 @@
                     <div class="card">
                         <div class="card-header"><h3><i class="fas fa-cog"></i> Configurações Gerais</h3></div>
                         <div class="card-body">
-                            <div class="form-group"><label class="form-label">Nome da Plataforma</label><input class="form-input" value="IAXO Feed"></div>
+                            <div class="form-group"><label class="form-label">Nome da Plataforma</label><input class="form-input" value="IAXO Ads"></div>
                             <div class="form-group"><label class="form-label">Mensalidade (R$)</label><input class="form-input" type="number" value="197"></div>
                             <div class="form-group"><label class="form-label">Tempo de Aprovação Automática (min)</label><input class="form-input" type="number" value="10"></div>
                             <div class="form-group"><label class="form-label">Chave PIX</label><input class="form-input" value="admin@iaxo.com"></div>

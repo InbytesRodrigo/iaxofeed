@@ -1,5 +1,5 @@
 // ==========================================
-// FIREBASE SERVICES - IAXO Feed
+// FIREBASE SERVICES - IAXO Ads
 // Auth + Firestore + Storage helpers
 // ==========================================
 
@@ -64,7 +64,7 @@ var FB = {
                         name: 'Admin IAXO',
                         email: email,
                         role: 'admin',
-                        business: 'IAXO Feed',
+                        business: 'IAXO Ads',
                         niche: 'Tecnologia',
                         status: 'active',
                         plan: 'admin',

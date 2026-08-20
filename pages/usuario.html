@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#050510">
     <link rel="manifest" href="../manifest.json">
     <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
-    <title>Painel do Usuário - IAXO Feed</title>
+    <title>Painel do Usuário - IAXO Ads</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/panel.css">
@@ -18,7 +18,7 @@
     <div class="panel-layout">
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <a href="../index.html" class="sidebar-logo"><span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Feed</span></a>
+                <a href="../index.html" class="sidebar-logo"><span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Ads</span></a>
                 <span class="sidebar-badge user-badge">USUÁRIO</span>
             </div>
             <nav class="sidebar-nav">
@@ -30,7 +30,8 @@
                 <a href="#" class="nav-item" data-page="chat" onclick="showPage('chat')"><i class="fas fa-headset"></i><span>Suporte</span><span class="nav-count">Online</span></a>
             </nav>
             <div class="sidebar-footer">
-                <div class="admin-avatar"><div class="avatar-circle" style="background:var(--gradient-1)">CS</div><div><div class="admin-name">Carlos Silva</div><div class="admin-role">Clínica Renova</div></div></div>
+                <div class="admin-avatar"><div class="avatar-circle" style="background:var(--gradient-1)" id="userAvatar" onclick="document.getElementById('avatarUpload').click()" title="Clique para trocar foto"><span id="avatarText">CS</span></div><input type="file" id="avatarUpload" accept="image/*" style="display:none" onchange="handleAvatarUpload(this)"><div><div class="admin-name" id="sidebarUserName">Carlos Silva</div><div class="admin-role" id="sidebarUserRole">Clínica Renova</div></div></div>
+                <a href="admin.html" class="admin-access-link" id="adminAccessLink"><i class="fas fa-shield-alt"></i> Acessar Admin</a>
             </div>
         </aside>
 
@@ -191,16 +192,6 @@
                     <div class="rt-info">
                         <h2><i class="fas fa-crosshairs"></i> Solicitar Nova Campanha</h2>
                         <p>Defina seu público-alvo com precisão. Quanto mais detalhado, melhor o algoritmo entrega leads qualificados.</p>
-                    </div>
-                    <div class="rt-preview-mini">
-                        <div class="rtp-box">
-                            <div class="rtp-ad">
-                                <div class="rtp-ad-header"><div class="rtp-dot" style="background:var(--gradient-1)"></div><div><strong style="font-size:11px">Clínica Renova</strong><span style="font-size:9px;color:var(--text-muted);display:block">Patrocinado</span></div></div>
-                                <div class="rtp-ad-img"><i class="fas fa-image"></i></div>
-                                <div class="rtp-ad-text"><div class="rtp-line w80"></div><div class="rtp-line w60"></div></div>
-                                <div class="rtp-ad-btn"><i class="fab fa-whatsapp"></i> Falar Agora</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -367,7 +358,7 @@
                         <button class="btn-primary" onclick="requestPix()"><i class="fas fa-qrcode"></i> Gerar PIX</button>
                         <div class="pix-result hidden" id="pixResult">
                             <div class="pix-qr-box"><i class="fas fa-qrcode" style="font-size:60px;color:var(--primary-light)"></i></div>
-                            <div class="pix-copy-box"><input class="form-input" value="00020126360014BR.GOV.BCB.PIX0136iaxo@email.com52040000530398654052000.00582BR5925IAXO Feed Administracao6009SAO PAULO62070503***6304" readonly id="pixCode"><button class="btn-sm" onclick="document.getElementById('pixCode').select();document.execCommand('copy');showToast('PIX copiado!')"><i class="fas fa-copy"></i></button></div>
+                            <div class="pix-copy-box"><input class="form-input" value="00020126360014BR.GOV.BCB.PIX0136iaxo@email.com52040000530398654052000.00582BR5925IAXO Ads Administracao6009SAO PAULO62070503***6304" readonly id="pixCode"><button class="btn-sm" onclick="document.getElementById('pixCode').select();document.execCommand('copy');showToast('PIX copiado!')"><i class="fas fa-copy"></i></button></div>
                         </div>
                     </div></div>
                     <div class="card" style="grid-column:1/-1;max-width:780px"><div class="card-header"><h3><i class="fas fa-history"></i> Histórico</h3></div><div class="card-body" style="padding:0">

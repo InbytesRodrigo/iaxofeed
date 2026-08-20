@@ -1,5 +1,5 @@
 // ==========================================
-// ADMIN PANEL JS - IAXO Feed
+// ADMIN PANEL JS - IAXO Ads
 // ==========================================
 
 // Login Check
@@ -249,7 +249,7 @@ function approveFilaItem(btn) {
 // ==========================================
 
 function copyPix(btn) {
-    var code = '00020126360014BR.GOV.BCB.PIX0136iaxo-admin@email.com5204000053039865405197.00582BR5925IAXO Feed Administracao6009SAO PAULO62070503***6304';
+    var code = '00020126360014BR.GOV.BCB.PIX0136iaxo-admin@email.com5204000053039865405197.00582BR5925IAXO Ads Administracao6009SAO PAULO62070503***6304';
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(code).then(function() {
             showToast('Código PIX copiado!', 'success');
@@ -430,6 +430,54 @@ function saveConfig() {
 }
 
 // ==========================================
+// AVATAR UPLOAD
+// ==========================================
+
+function handleAdminAvatarUpload(input) {
+    if (input.files && input.files[0]) {
+        var file = input.files[0];
+        if (file.size > 2 * 1024 * 1024) {
+            showToast('Imagem muito grande. Máximo 2MB.', 'warning');
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var avatar = document.getElementById('adminAvatar');
+            var text = document.getElementById('adminAvatarText');
+            if (avatar && text) {
+                text.style.display = 'none';
+                var existing = avatar.querySelector('img');
+                if (existing) existing.remove();
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Avatar';
+                avatar.appendChild(img);
+                localStorage.setItem('iaxo_admin_avatar', e.target.result);
+            }
+            showToast('Foto de perfil atualizada!', 'success');
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function loadAdminAvatar() {
+    var saved = localStorage.getItem('iaxo_admin_avatar');
+    if (saved) {
+        var avatar = document.getElementById('adminAvatar');
+        var text = document.getElementById('adminAvatarText');
+        if (avatar && text) {
+            text.style.display = 'none';
+            var existing = avatar.querySelector('img');
+            if (existing) existing.remove();
+            var img = document.createElement('img');
+            img.src = saved;
+            img.alt = 'Avatar';
+            avatar.appendChild(img);
+        }
+    }
+}
+
+// ==========================================
 // INIT
 // ==========================================
 
@@ -437,4 +485,5 @@ window.addEventListener('load', function() {
     renderUsers();
     initChart();
     simulateRealtime();
+    loadAdminAvatar();
 });

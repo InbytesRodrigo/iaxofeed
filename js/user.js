@@ -461,7 +461,54 @@ function initCampaignFilter() {
 }
 
 /* ---------------------------------------------------------
-   20. Inicialização ao carregar a janela
+   20. Avatar Upload
+   --------------------------------------------------------- */
+function handleAvatarUpload(input) {
+    if (input.files && input.files[0]) {
+        var file = input.files[0];
+        if (file.size > 2 * 1024 * 1024) {
+            showToast('Imagem muito grande. Máximo 2MB.', 'warning');
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var avatar = document.getElementById('userAvatar');
+            var text = document.getElementById('avatarText');
+            if (avatar && text) {
+                text.style.display = 'none';
+                var existing = avatar.querySelector('img');
+                if (existing) existing.remove();
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Avatar';
+                avatar.appendChild(img);
+                localStorage.setItem('iaxo_avatar', e.target.result);
+            }
+            showToast('Foto de perfil atualizada!', 'success');
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function loadAvatar() {
+    var saved = localStorage.getItem('iaxo_avatar');
+    if (saved) {
+        var avatar = document.getElementById('userAvatar');
+        var text = document.getElementById('avatarText');
+        if (avatar && text) {
+            text.style.display = 'none';
+            var existing = avatar.querySelector('img');
+            if (existing) existing.remove();
+            var img = document.createElement('img');
+            img.src = saved;
+            img.alt = 'Avatar';
+            avatar.appendChild(img);
+        }
+    }
+}
+
+/* ---------------------------------------------------------
+   21. Inicialização ao carregar a janela
    --------------------------------------------------------- */
 window.addEventListener('load', function () {
     initChart();
@@ -471,4 +518,5 @@ window.addEventListener('load', function () {
     initSearchFilter();
     initLeadSourceFilter();
     initCampaignFilter();
+    loadAvatar();
 });

@@ -140,6 +140,12 @@
 .rf-section:nth-child(3) .tg-chip:has(input:checked),.rf-section:nth-child(3) .tg-chip.active{border-color:#FF4757;color:#FF6B81;background:rgba(255,69,87,0.1)}
 .rf-section:nth-child(3) .tg-chip:hover{border-color:#FF4757}
 
+/* Chip tap feedback */
+.tg-chip { transition: all 0.15s ease; -webkit-tap-highlight-color: transparent; }
+.tg-chip:active { transform: scale(0.95); }
+.mm-option { transition: all 0.15s ease; -webkit-tap-highlight-color: transparent; }
+.mm-option:active { transform: scale(0.97); }
+
 /* Select dropdown styling */
 .form-input[type="select"],select.form-input{cursor:pointer;background-color:var(--bg-card)}
 .tg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -239,6 +245,8 @@
     .campaign-info h3 { font-size: 14px; }
     .campaign-meta span { font-size: 11px; }
     .ccard-metrics { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .ccard { transition: transform 0.15s ease; }
+    .ccard:active { transform: scale(0.98); }
     
     /* Welcome banner */
     .welcome-banner { padding: 20px; flex-direction: column; text-align: center; gap: 12px; }

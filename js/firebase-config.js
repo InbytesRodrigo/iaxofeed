@@ -1,4 +1,4 @@
-// Firebase Configuration - IAXO Feed
+// Firebase Configuration - IAXO Ads
 // Projeto: iaxofeed (Firebase)
 var firebaseConfig = {
     apiKey: "AIzaSyAjmX5UwtUzI6weGUKA29rvA1X9dr5Bse4",

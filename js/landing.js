@@ -1,5 +1,5 @@
 // ==========================================
-// LANDING PAGE JS - IAXO Feed
+// LANDING PAGE JS - IAXO Ads
 // ==========================================
 
 const searchInput = document.getElementById('searchInput');
