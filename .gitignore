@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.log
+auth-export.json
+firebase-debug.log
+scripts/seed.js
+generate-icons.js
+package*.json
+.netlify/
+.firebase/
+.freebuff/

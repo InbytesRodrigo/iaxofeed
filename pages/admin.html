@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0C0C0C">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+    <title>Painel Admin - IAXO Ads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/panel.css">
+</head>
+<body>
+    <div class="panel-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Ads</span>
+                </a>
+                <span class="sidebar-badge">ADMIN</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+                    <i class="fas fa-th-large"></i><span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="usuarios" onclick="showPage('usuarios')">
+                    <i class="fas fa-users"></i><span>Usuários</span>
+                    <span class="nav-count">24</span>
+                </a>
+                <a href="#" class="nav-item" data-page="campanhas" onclick="showPage('campanhas')">
+                    <i class="fas fa-ad"></i><span>Campanhas</span>
+                    <span class="nav-count">12</span>
+                </a>
+                <a href="#" class="nav-item" data-page="fila" onclick="showPage('fila')">
+                    <i class="fas fa-clipboard-list"></i><span>Fila de Campanhas</span>
+                    <span class="nav-count red">5</span>
+                </a>
+                <a href="#" class="nav-item" data-page="leads" onclick="showPage('leads')">
+                    <i class="fas fa-address-book"></i><span>Leads</span>
+                    <span class="nav-count pulse">348</span>
+                </a>
+                <a href="#" class="nav-item" data-page="pagamentos" onclick="showPage('pagamentos')">
+                    <i class="fas fa-qrcode"></i><span>Pagamentos</span>
+                </a>
+                <a href="#" class="nav-item" data-page="chat" onclick="showPage('chat')">
+                    <i class="fas fa-headset"></i><span>Suporte</span>
+                    <span class="nav-count red">3</span>
+                </a>
+                <a href="#" class="nav-item" data-page="config" onclick="showPage('config')">
+                    <i class="fas fa-cog"></i><span>Configurações</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-avatar">
+                    <div class="avatar-circle" id="adminAvatar" onclick="document.getElementById('adminAvatarUpload').click()" title="Clique para trocar foto"><span id="adminAvatarText">AD</span></div><input type="file" id="adminAvatarUpload" accept="image/*" style="display:none" onchange="handleAdminAvatarUpload(this)">
+                    <div>
+                        <div class="admin-name" id="sidebarAdminName">Admin IAXO</div>
+                        <div class="admin-role">Super Administrador</div>
+                    </div>
+                </div>
+                <a href="#" class="admin-access-link" onclick="logout()" style="margin-top:4px"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar..." oninput="filterUsers(this.value)">
+                    </div>
+                    <button class="topbar-btn" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-dot"></span>
+                    </button>
+                    <button class="topbar-btn">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Notification Panel -->
+            <div class="notif-panel" id="notifPanel">
+                <div class="notif-header">
+                    <h3>Notificações</h3>
+                    <button onclick="toggleNotifications()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="notif-list">
+                    <div class="notif-item notif-new">
+                        <div class="notif-icon success"><i class="fas fa-user-plus"></i></div>
+                        <div class="notif-info">
+                            <p><strong>Novo cadastro:</strong> Maria Santos se cadastrou</p>
+                            <span>2 min atrás</span>
+                        </div>
+                    </div>
+                    <div class="notif-item notif-new">
+                        <div class="notif-icon info"><i class="fas fa-ad"></i></div>
+                        <div class="notif-info">
+                            <p><strong>Campanha pendente:</strong> Aguardando aprovação - Clínica Renova</p>
+                            <span>8 min atrás</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon warning"><i class="fas fa-qrcode"></i></div>
+                        <div class="notif-info">
+                            <p><strong>Pagamento:</strong> R$197 PIX confirmado - Carlos Silva</p>
+                            <span>1h atrás</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon success"><i class="fas fa-check-circle"></i></div>
+                        <div class="notif-info">
+                            <p><strong>Lead aprovado:</strong> +5 leads enviados para E-Shop Brasil</p>
+                            <span>2h atrás</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-icon info"><i class="fas fa-headset"></i></div>
+                        <div class="notif-info">
+                            <p><strong>Suporte:</strong> Pedro Lima abriu um ticket</p>
+                            <span>3h atrás</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div class="page-content" id="page-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background:rgba(255,107,44,0.15);color:var(--primary-light)">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Total Usuários</span>
+                            <span class="stat-card-value">247</span>
+                            <span class="stat-card-change positive"><i class="fas fa-arrow-up"></i> +12% este mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background:rgba(6,214,160,0.15);color:var(--secondary)">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Receita Mensal</span>
+                            <span class="stat-card-value">R$ 48.659</span>
+                            <span class="stat-card-change positive"><i class="fas fa-arrow-up"></i> +23% este mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background:rgba(255,107,107,0.15);color:var(--accent)">
+                            <i class="fas fa-address-book"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Leads Gerados</span>
+                            <span class="stat-card-value">12.847</span>
+                            <span class="stat-card-change positive"><i class="fas fa-arrow-up"></i> +18% este mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" style="background:rgba(255,179,71,0.15);color:#FFB347">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Campanhas Ativas</span>
+                            <span class="stat-card-value">89</span>
+                            <span class="stat-card-change positive"><i class="fas fa-arrow-up"></i> +8 novas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Receita nos Últimos 7 Dias</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clock"></i> Campanhas Pendentes</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="pending-list">
+                                <div class="pending-item">
+                                    <div class="pending-avatar" style="background:var(--gradient-1)">CR</div>
+                                    <div class="pending-info">
+                                        <strong>Clínica Renova</strong>
+                                        <span>Campanha "Implantes Dentários" - Aguardando aprovação</span>
+                                    </div>
+                                    <div class="pending-actions">
+                                        <button class="btn-icon success" onclick="approveCampaign(this)" title="Aprovar"><i class="fas fa-check"></i></button>
+                                        <button class="btn-icon danger" title="Rejeitar"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="pending-item">
+                                    <div class="pending-avatar" style="background:var(--gradient-2)">ES</div>
+                                    <div class="pending-info">
+                                        <strong>E-Shop Brasil</strong>
+                                        <span>Campanha "Black Friday" - Aguardando aprovação</span>
+                                    </div>
+                                    <div class="pending-actions">
+                                        <button class="btn-icon success" onclick="approveCampaign(this)" title="Aprovar"><i class="fas fa-check"></i></button>
+                                        <button class="btn-icon danger" title="Rejeitar"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="pending-item">
+                                    <div class="pending-avatar" style="background:var(--gradient-3)">GE</div>
+                                    <div class="pending-info">
+                                        <strong>Gourmet Express</strong>
+                                        <span>Campanha "Delivery Premium" - Aguardando aprovação</span>
+                                    </div>
+                                    <div class="pending-actions">
+                                        <button class="btn-icon success" onclick="approveCampaign(this)" title="Aprovar"><i class="fas fa-check"></i></button>
+                                        <button class="btn-icon danger" title="Rejeitar"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user-plus"></i> Últimos Cadastros</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="user-list-mini">
+                                <div class="user-mini">
+                                    <div class="avatar-circle small" style="background:var(--gradient-1)">MS</div>
+                                    <div><strong>Maria Santos</strong><br><span class="text-muted">Clínica Bello - há 2h</span></div>
+                                </div>
+                                <div class="user-mini">
+                                    <div class="avatar-circle small" style="background:var(--gradient-2)">PL</div>
+                                    <div><strong>Pedro Lima</strong><br><span class="text-muted">Imobiliária Horizonte - há 5h</span></div>
+                                </div>
+                                <div class="user-mini">
+                                    <div class="avatar-circle small" style="background:var(--gradient-3)">AC</div>
+                                    <div><strong>Ana Costa</strong><br><span class="text-muted">Studio Beleza - há 8h</span></div>
+                                </div>
+                                <div class="user-mini">
+                                    <div class="avatar-circle small" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">RO</div>
+                                    <div><strong>Ricardo Oliveira</strong><br><span class="text-muted">Finanzas Pro - ontem</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usuarios Page -->
+            <div class="page-content hidden" id="page-usuarios">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="search-bar" style="width:300px">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar usuário..." oninput="filterUsers(this.value)">
+                        </div>
+                        <select class="filter-select" onchange="filterUsersByStatus(this.value)">
+                            <option value="all">Todos</option>
+                            <option value="active">Ativos</option>
+                            <option value="inactive">Inativos</option>
+                            <option value="pending">Pendentes</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="openModal('newUserModal')">
+                        <i class="fas fa-plus"></i> Novo Usuário
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Negócio</th>
+                                <th>Nicho</th>
+                                <th>Plano</th>
+                                <th>Status</th>
+                                <th>Leads</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr>
+                                <td><div class="user-cell"><div class="avatar-circle small" style="background:var(--gradient-1)">CS</div><div><strong>Carlos Silva</strong><br><span class="text-muted">carlos@email.com</span></div></div></td>
+                                <td>Clínica Renova</td>
+                                <td><span class="tag">Saúde</span></td>
+                                <td><span class="tag premium">Premium</span></td>
+                                <td><span class="status-badge active">Ativo</span></td>
+                                <td>342</td>
+                                <td class="actions-cell">
+                                    <button class="btn-icon" title="Editar" onclick="openModal('editUserModal')"><i class="fas fa-pen"></i></button>
+                                    <button class="btn-icon danger" title="Excluir" onclick="deleteUser(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div class="user-cell"><div class="avatar-circle small" style="background:var(--gradient-2)">MS</div><div><strong>Maria Santos</strong><br><span class="text-muted">maria@email.com</span></div></div></td>
+                                <td>E-Shop Brasil</td>
+                                <td><span class="tag">E-commerce</span></td>
+                                <td><span class="tag premium">Premium</span></td>
+                                <td><span class="status-badge active">Ativo</span></td>
+                                <td>567</td>
+                                <td class="actions-cell">
+                                    <button class="btn-icon" title="Editar" onclick="openModal('editUserModal')"><i class="fas fa-pen"></i></button>
+                                    <button class="btn-icon danger" title="Excluir" onclick="deleteUser(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div class="user-cell"><div class="avatar-circle small" style="background:var(--gradient-3)">PL</div><div><strong>Pedro Lima</strong><br><span class="text-muted">pedro@email.com</span></div></div></td>
+                                <td>Imobiliária Horizonte</td>
+                                <td><span class="tag">Imobiliário</span></td>
+                                <td><span class="tag premium">Premium</span></td>
+                                <td><span class="status-badge pending">Pendente</span></td>
+                                <td>0</td>
+                                <td class="actions-cell">
+                                    <button class="btn-icon" title="Editar" onclick="openModal('editUserModal')"><i class="fas fa-pen"></i></button>
+                                    <button class="btn-icon danger" title="Excluir" onclick="deleteUser(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div class="user-cell"><div class="avatar-circle small" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">AC</div><div><strong>Ana Costa</strong><br><span class="text-muted">ana@email.com</span></div></div></td>
+                                <td>Studio Beleza</td>
+                                <td><span class="tag">Estética</span></td>
+                                <td><span class="tag premium">Premium</span></td>
+                                <td><span class="status-badge active">Ativo</span></td>
+                                <td>189</td>
+                                <td class="actions-cell">
+                                    <button class="btn-icon" title="Editar" onclick="openModal('editUserModal')"><i class="fas fa-pen"></i></button>
+                                    <button class="btn-icon danger" title="Excluir" onclick="deleteUser(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><div class="user-cell"><div class="avatar-circle small" style="background:linear-gradient(135deg,#667eea,#764ba2)">RO</div><div><strong>Ricardo Oliveira</strong><br><span class="text-muted">ricardo@email.com</span></div></div></td>
+                                <td>Finanzas Pro</td>
+                                <td><span class="tag">Finanças</span></td>
+                                <td><span class="tag premium">Premium</span></td>
+                                <td><span class="status-badge inactive">Inativo</span></td>
+                                <td>45</td>
+                                <td class="actions-cell">
+                                    <button class="btn-icon" title="Editar" onclick="openModal('editUserModal')"><i class="fas fa-pen"></i></button>
+                                    <button class="btn-icon danger" title="Excluir" onclick="deleteUser(this)"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Campanhas Page -->
+            <div class="page-content hidden" id="page-campanhas">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active">Todas</button>
+                            <button class="filter-tab">No Ar</button>
+                            <button class="filter-tab">Aprendizado</button>
+                            <button class="filter-tab">Pendentes</button>
+                            <button class="filter-tab">Pausadas</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="campaigns-grid">
+                    <div class="campaign-card">
+                        <div class="campaign-status on-air"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="campaign-image" style="background:linear-gradient(135deg,#FF6B2C,#FF8F5E)">
+                            <i class="fas fa-tooth"></i>
+                        </div>
+                        <div class="campaign-body">
+                            <h4>Implantes Dentários</h4>
+                            <p class="campaign-client">Clínica Renova</p>
+                            <div class="campaign-stats">
+                                <div><span class="label">Investido</span><span class="value">R$ 2.450</span></div>
+                                <div><span class="label">Leads</span><span class="value">127</span></div>
+                                <div><span class="label">Custo/Lead</span><span class="value highlight">R$ 19,29</span></div>
+                            </div>
+                            <div class="campaign-whatsapp">
+                                <i class="fab fa-whatsapp"></i> +5511999999999
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-status learning"><i class="fas fa-circle"></i> Aprendizado</div>
+                        <div class="campaign-image" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="campaign-body">
+                            <h4>Black Friday 2026</h4>
+                            <p class="campaign-client">E-Shop Brasil</p>
+                            <div class="campaign-stats">
+                                <div><span class="label">Investido</span><span class="value">R$ 800</span></div>
+                                <div><span class="label">Leads</span><span class="value">23</span></div>
+                                <div><span class="label">Custo/Lead</span><span class="value highlight">R$ 34,78</span></div>
+                            </div>
+                            <div class="campaign-whatsapp">
+                                <i class="fab fa-whatsapp"></i> +5511888888888
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-status pending-status"><i class="fas fa-circle"></i> Pendente</div>
+                        <div class="campaign-image" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="campaign-body">
+                            <h4>Delivery Premium</h4>
+                            <p class="campaign-client">Gourmet Express</p>
+                            <div class="campaign-stats">
+                                <div><span class="label">Investido</span><span class="value">R$ 0</span></div>
+                                <div><span class="label">Leads</span><span class="value">0</span></div>
+                                <div><span class="label">Custo/Lead</span><span class="value">—</span></div>
+                            </div>
+                            <div class="campaign-actions-pending">
+                                <button class="btn-sm success" onclick="approveCampaignCard(this)"><i class="fas fa-check"></i> Aprovar</button>
+                                <button class="btn-sm danger"><i class="fas fa-times"></i> Rejeitar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILA DE CAMPANHAS -->
+            <div class="page-content hidden" id="page-fila">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active">Todas</button>
+                            <button class="filter-tab">Pendentes</button>
+                            <button class="filter-tab">Em Criação</button>
+                            <button class="filter-tab">Aguardando Aprovação</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fila-header">
+                    <div class="fila-stats">
+                        <div class="fila-stat">
+                            <div class="fila-stat-num">5</div>
+                            <div class="fila-stat-label">Pendentes</div>
+                        </div>
+                        <div class="fila-stat">
+                            <div class="fila-stat-num" style="color:#FFB347">3</div>
+                            <div class="fila-stat-label">Em Criação</div>
+                        </div>
+                        <div class="fila-stat">
+                            <div class="fila-stat-num" style="color:var(--primary-light)">2</div>
+                            <div class="fila-stat-label">Aguardando</div>
+                        </div>
+                        <div class="fila-stat">
+                            <div class="fila-stat-num" style="color:var(--secondary)">12</div>
+                            <div class="fila-stat-label">Concluídas Hoje</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fila-list">
+                    <div class="fila-item">
+                        <div class="fila-item-left">
+                            <div class="fila-priority urgent">Urgente</div>
+                            <div class="avatar-circle small" style="background:var(--gradient-1)">CS</div>
+                            <div class="fila-info">
+                                <strong>Carlos Silva — Clínica Renova</strong>
+                                <span>Campanha "Implantes Premium" — Orçamento: R$ 3.000</span>
+                                <div class="fila-targeting">
+                                    <span><i class="fas fa-map-marker-alt"></i> São Paulo, SP</span>
+                                    <span><i class="fas fa-venus-mars"></i> Feminino</span>
+                                    <span><i class="fas fa-birthday-cake"></i> 30-55 anos</span>
+                                    <span><i class="fas fa-heart"></i> Saúde, Beleza</span>
+                                    <span><i class="fas fa-mobile-alt"></i> iOS + Android</span>
+                                </div>
+                                <span class="fila-copy">"Seu sorriso merece o melhor! Implantes dentários com tecnologia de ponta. Primeira consulta grátis. Agende pelo WhatsApp!"</span>
+                                <span class="fila-midia"><i class="fas fa-magic"></i> Gere para mim — Descrição: Imagem com fundo azul escuro, foto de sorriso perfeito</span>
+                            </div>
+                        </div>
+                        <div class="fila-item-right">
+                            <div class="fila-time">Recebido há 12 min</div>
+                            <div class="fila-actions">
+                                <button class="btn-sm" onclick="startCreation(this)"><i class="fas fa-play"></i> Iniciar Criação</button>
+                                <button class="btn-sm success" onclick="approveFilaItem(this)"><i class="fas fa-check"></i> Aprovar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fila-item">
+                        <div class="fila-item-left">
+                            <div class="fila-priority normal">Normal</div>
+                            <div class="avatar-circle small" style="background:var(--gradient-2)">MS</div>
+                            <div class="fila-info">
+                                <strong>Maria Santos — E-Shop Brasil</strong>
+                                <span>Campanha "Black Friday" — Orçamento: R$ 5.000</span>
+                                <div class="fila-targeting">
+                                    <span><i class="fas fa-map-marker-alt"></i> Brasil inteiro</span>
+                                    <span><i class="fas fa-venus-mars"></i> Todos</span>
+                                    <span><i class="fas fa-birthday-cake"></i> 18-45 anos</span>
+                                    <span><i class="fas fa-heart"></i> Compras online, Moda</span>
+                                    <span><i class="fas fa-shopping-bag"></i> Comprou online 30 dias</span>
+                                </div>
+                                <span class="fila-copy">"BLACK FRIDAY! Até 70% OFF em todos os produtos. Frete grátis acima de R$99. Corre que esgota!"</span>
+                                <span class="fila-midia"><i class="fas fa-upload"></i> Mídia enviada — banner_bf_1080x1350.jpg</span>
+                            </div>
+                        </div>
+                        <div class="fila-item-right">
+                            <div class="fila-time">Recebido há 25 min</div>
+                            <div class="fila-actions">
+                                <button class="btn-sm" onclick="startCreation(this)"><i class="fas fa-play"></i> Iniciar</button>
+                                <button class="btn-sm success" onclick="approveFilaItem(this)"><i class="fas fa-check"></i> Aprovar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fila-item in-progress">
+                        <div class="fila-item-left">
+                            <div class="fila-priority progress">Em Criação</div>
+                            <div class="avatar-circle small" style="background:var(--gradient-3)">PL</div>
+                            <div class="fila-info">
+                                <strong>Pedro Lima — Imobiliária Horizonte</strong>
+                                <span>Campanha "Apartamentos SP" — Orçamento: R$ 2.000</span>
+                                <div class="fila-targeting">
+                                    <span><i class="fas fa-map-marker-alt"></i> São Paulo, SP</span>
+                                    <span><i class="fas fa-birthday-cake"></i> 28-50 anos</span>
+                                    <span><i class="fas fa-heart"></i> Imóveis, Finanças</span>
+                                    <span><i class="fas fa-dollar-sign"></i> Poder de compra alto</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fila-item-right">
+                            <div class="fila-progress-badge"><i class="fas fa-spinner fa-spin"></i> Criando mídia...</div>
+                            <div class="fila-time">Iniciado há 8 min</div>
+                        </div>
+                    </div>
+
+                    <div class="fila-item">
+                        <div class="fila-item-left">
+                            <div class="fila-priority normal">Normal</div>
+                            <div class="avatar-circle small" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">AC</div>
+                            <div class="fila-info">
+                                <strong>Ana Costa — Studio Beleza</strong>
+                                <span>Campanha "Design de Sobrancelhas" — Orçamento: R$ 800</span>
+                                <div class="fila-targeting">
+                                    <span><i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ</span>
+                                    <span><i class="fas fa-venus-mars"></i> Feminino</span>
+                                    <span><i class="fas fa-birthday-cake"></i> 18-40 anos</span>
+                                    <span><i class="fas fa-heart"></i> Beleza, Estética</span>
+                                    <span><i class="fas fa-mobile-alt"></i> WiFi + 4G</span>
+                                </div>
+                                <span class="fila-copy">"Sobrancelhas perfeitas com Design premium! Agende sua avaliação gratuita. Vagas limitadas esta semana."</span>
+                                <span class="fila-midia"><i class="fas fa-magic"></i> Gere para mim — Descrição: Foto close de olho com sobrancelha perfeita, fundo rosa claro</span>
+                            </div>
+                        </div>
+                        <div class="fila-item-right">
+                            <div class="fila-time">Recebido há 45 min</div>
+                            <div class="fila-actions">
+                                <button class="btn-sm" onclick="startCreation(this)"><i class="fas fa-play"></i> Iniciar</button>
+                                <button class="btn-sm success" onclick="approveFilaItem(this)"><i class="fas fa-check"></i> Aprovar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fila-item">
+                        <div class="fila-item-left">
+                            <div class="fila-priority normal">Normal</div>
+                            <div class="avatar-circle small" style="background:linear-gradient(135deg,#667eea,#764ba2)">RO</div>
+                            <div class="fila-info">
+                                <strong>Ricardo Oliveira — Finanzas Pro</strong>
+                                <span>Campanha "Consultoria Financeira" — Orçamento: R$ 1.500</span>
+                                <div class="fila-targeting">
+                                    <span><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG</span>
+                                    <span><i class="fas fa-venus-mars"></i> Masculino</span>
+                                    <span><i class="fas fa-birthday-cake"></i> 30-60 anos</span>
+                                    <span><i class="fas fa-heart"></i> Finanças, Investimentos</span>
+                                    <span><i class="fas fa-dollar-sign"></i> Poder de compra muito alto</span>
+                                </div>
+                                <span class="fila-copy">"Pare de perder dinheiro! Consultoria financeira personalizada. Aumente seus rendimentos em 30 dias. Fale com um especialista."</span>
+                                <span class="fila-midia"><i class="fas fa-upload"></i> Mídia enviada — consultoria_img.jpg</span>
+                            </div>
+                        </div>
+                        <div class="fila-item-right">
+                            <div class="fila-time">Recebido há 1h</div>
+                            <div class="fila-actions">
+                                <button class="btn-sm" onclick="startCreation(this)"><i class="fas fa-play"></i> Iniciar</button>
+                                <button class="btn-sm success" onclick="approveFilaItem(this)"><i class="fas fa-check"></i> Aprovar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leads Page -->
+            <div class="page-content hidden" id="page-leads">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="search-bar" style="width:300px">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar lead...">
+                        </div>
+                        <select class="filter-select">
+                            <option>Todas as fontes</option>
+                            <option>Instagram</option>
+                            <option>Google</option>
+                            <option>Facebook</option>
+                        </select>
+                        <select class="filter-select">
+                            <option>Todos os usuários</option>
+                            <option>Clínica Renova</option>
+                            <option>E-Shop Brasil</option>
+                            <option>Studio Beleza</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="openModal('newLeadModal')">
+                        <i class="fas fa-plus"></i> Novo Lead
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>WhatsApp</th>
+                                <th>Fonte</th>
+                                <th>Campanha</th>
+                                <th>Usuário</th>
+                                <th>Valor/Lead</th>
+                                <th>Status</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leadsTable">
+                            <tr>
+                                <td><strong>Fernanda Almeida</strong></td>
+                                <td><a href="https://wa.me/5511977777777" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 97777-7777</a></td>
+                                <td><span class="source-badge instagram"><i class="fab fa-instagram"></i> Instagram</span></td>
+                                <td>Implantes Dentários</td>
+                                <td>Clínica Renova</td>
+                                <td><strong>R$ 19,29</strong></td>
+                                <td><span class="status-badge active">Enviado</span></td>
+                                <td>Hoje, 14:32</td>
+                                <td><button class="btn-icon" title="Ver"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bruno Ferreira</strong></td>
+                                <td><a href="https://wa.me/5511966666666" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 96666-6666</a></td>
+                                <td><span class="source-badge google"><i class="fab fa-google"></i> Google</span></td>
+                                <td>Black Friday 2026</td>
+                                <td>E-Shop Brasil</td>
+                                <td><strong>R$ 34,78</strong></td>
+                                <td><span class="status-badge active">Enviado</span></td>
+                                <td>Hoje, 13:15</td>
+                                <td><button class="btn-icon" title="Ver"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Juliana Mendes</strong></td>
+                                <td><a href="https://wa.me/5511955555555" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 95555-5555</a></td>
+                                <td><span class="source-badge instagram"><i class="fab fa-instagram"></i> Instagram</span></td>
+                                <td>Implantes Dentários</td>
+                                <td>Clínica Renova</td>
+                                <td><strong>R$ 19,29</strong></td>
+                                <td><span class="status-badge active">Enviado</span></td>
+                                <td>Hoje, 12:48</td>
+                                <td><button class="btn-icon" title="Ver"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lucas Pereira</strong></td>
+                                <td><a href="https://wa.me/5511944444444" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 94444-4444</a></td>
+                                <td><span class="source-badge facebook"><i class="fab fa-facebook"></i> Facebook</span></td>
+                                <td>Implantes Dentários</td>
+                                <td>Clínica Renova</td>
+                                <td><strong>R$ 19,29</strong></td>
+                                <td><span class="status-badge pending">Novo</span></td>
+                                <td>Hoje, 11:20</td>
+                                <td><button class="btn-icon success" title="Enviar" onclick="sendLead(this)"><i class="fas fa-check"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Camila Rodrigues</strong></td>
+                                <td><a href="https://wa.me/5511933333333" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 93333-3333</a></td>
+                                <td><span class="source-badge google"><i class="fab fa-google"></i> Google</span></td>
+                                <td>Serviços Premium</td>
+                                <td>Studio Beleza</td>
+                                <td><strong>R$ 22,50</strong></td>
+                                <td><span class="status-badge active">Enviado</span></td>
+                                <td>Ontem, 18:45</td>
+                                <td><button class="btn-icon" title="Ver"><i class="fas fa-eye"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagamentos Page -->
+            <div class="page-content hidden" id="page-pagamentos">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active">Todos</button>
+                            <button class="filter-tab">Confirmados</button>
+                            <button class="filter-tab">Pendentes</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="openModal('newPaymentModal')">
+                        <i class="fas fa-plus"></i> Criar Pagamento PIX
+                    </button>
+                </div>
+                <div class="payments-grid">
+                    <div class="payment-card">
+                        <div class="payment-header">
+                            <div class="payment-user">
+                                <div class="avatar-circle small" style="background:var(--gradient-1)">CS</div>
+                                <div>
+                                    <strong>Carlos Silva</strong>
+                                    <span>Clínica Renova</span>
+                                </div>
+                            </div>
+                            <span class="status-badge active">Pago</span>
+                        </div>
+                        <div class="payment-amount">R$ 197,00</div>
+                        <div class="payment-details">
+                            <div class="payment-row">
+                                <span>Tipo:</span><span>Mensalidade</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>PIX:</span><span class="pix-code">00020126360014BR.GOV.BCB.PIX...</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>Data:</span><span>18/08/2026</span>
+                            </div>
+                        </div>
+                        <div class="payment-actions">
+                            <button class="btn-sm" onclick="copyPix(this)"><i class="fas fa-copy"></i> Copiar PIX</button>
+                        </div>
+                    </div>
+                    <div class="payment-card">
+                        <div class="payment-header">
+                            <div class="payment-user">
+                                <div class="avatar-circle small" style="background:var(--gradient-2)">MS</div>
+                                <div>
+                                    <strong>Maria Santos</strong>
+                                    <span>E-Shop Brasil</span>
+                                </div>
+                            </div>
+                            <span class="status-badge pending">Pendente</span>
+                        </div>
+                        <div class="payment-amount">R$ 2.500,00</div>
+                        <div class="payment-details">
+                            <div class="payment-row">
+                                <span>Tipo:</span><span>Campanha - Investimento</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>PIX:</span><span class="pix-code">00020126360014BR.GOV.BCB.PIX...</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>Data:</span><span>Aguardando...</span>
+                            </div>
+                        </div>
+                        <div class="payment-actions">
+                            <button class="btn-sm" onclick="copyPix(this)"><i class="fas fa-copy"></i> Copiar PIX</button>
+                            <button class="btn-sm success"><i class="fas fa-check"></i> Confirmar</button>
+                        </div>
+                    </div>
+                    <div class="payment-card">
+                        <div class="payment-header">
+                            <div class="payment-user">
+                                <div class="avatar-circle small" style="background:var(--gradient-3)">PL</div>
+                                <div>
+                                    <strong>Pedro Lima</strong>
+                                    <span>Imobiliária Horizonte</span>
+                                </div>
+                            </div>
+                            <span class="status-badge active">Pago</span>
+                        </div>
+                        <div class="payment-amount">R$ 3.800,00</div>
+                        <div class="payment-details">
+                            <div class="payment-row">
+                                <span>Tipo:</span><span>Campanha - Investimento</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>PIX:</span><span class="pix-code">00020126360014BR.GOV.BCB.PIX...</span>
+                            </div>
+                            <div class="payment-row">
+                                <span>Data:</span><span>17/08/2026</span>
+                            </div>
+                        </div>
+                        <div class="payment-actions">
+                            <button class="btn-sm" onclick="copyPix(this)"><i class="fas fa-copy"></i> Copiar PIX</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Page -->
+            <div class="page-content hidden" id="page-chat">
+                <div class="chat-layout">
+                    <div class="chat-sidebar">
+                        <h3>Conversas</h3>
+                        <div class="chat-contact active">
+                            <div class="avatar-circle small" style="background:var(--gradient-1)">CS</div>
+                            <div class="contact-info">
+                                <strong>Carlos Silva</strong>
+                                <span>"Preciso de ajuda com a campanha..."</span>
+                            </div>
+                            <span class="chat-time">2min</span>
+                        </div>
+                        <div class="chat-contact">
+                            <div class="avatar-circle small" style="background:var(--gradient-2)">MS</div>
+                            <div class="contact-info">
+                                <strong>Maria Santos</strong>
+                                <span>"Como faço para criar uma nova..."</span>
+                            </div>
+                            <span class="chat-time">15min</span>
+                        </div>
+                        <div class="chat-contact">
+                            <div class="avatar-circle small" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">AC</div>
+                            <div class="contact-info">
+                                <strong>Ana Costa</strong>
+                                <span>"Obrigada pela ajuda!"</span>
+                            </div>
+                            <span class="chat-time">1h</span>
+                        </div>
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-header-bar">
+                            <div class="avatar-circle small" style="background:var(--gradient-1)">CS</div>
+                            <div>
+                                <strong>Carlos Silva</strong>
+                                <span class="online-status"><i class="fas fa-circle"></i> Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message received">
+                                <div class="message-bubble">Olá! Preciso de ajuda para configurar minha campanha de implantes dentários. O WhatsApp está correto no anúncio?</div>
+                                <span class="message-time">14:32</span>
+                            </div>
+                            <div class="chat-message sent">
+                                <div class="message-bubble">Olá Carlos! Sim, vou verificar agora. Qual número você está usando?</div>
+                                <span class="message-time">14:33</span>
+                            </div>
+                            <div class="chat-message received">
+                                <div class="message-bubble">É o (11) 99999-9999. Quero ter certeza que os leads vão direto pra mim!</div>
+                                <span class="message-time">14:35</span>
+                            </div>
+                            <div class="chat-message sent">
+                                <div class="message-bubble">Confirmado! O número está correto na campanha. Seus leads estão sendo redirecionados corretamente para o WhatsApp. Viu que já tem 12 leads novos hoje?</div>
+                                <span class="message-time">14:36</span>
+                            </div>
+                            <div class="chat-message received">
+                                <div class="message-bubble">Perfeito! Muito obrigado pela ajuda! 🎉</div>
+                                <span class="message-time">14:38</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <button class="chat-tool"><i class="fas fa-paperclip"></i></button>
+                            <input type="text" class="chat-input" placeholder="Digite sua mensagem..." id="chatInput" onkeypress="if(event.key==='Enter')sendChatMessage()">
+                            <button class="chat-send" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Config Page -->
+            <div class="page-content hidden" id="page-config">
+                <div class="settings-grid">
+                    <div class="card">
+                        <div class="card-header"><h3><i class="fas fa-cog"></i> Configurações Gerais</h3></div>
+                        <div class="card-body">
+                            <div class="form-group"><label class="form-label">Nome da Plataforma</label><input class="form-input" value="IAXO Ads"></div>
+                            <div class="form-group"><label class="form-label">Mensalidade (R$)</label><input class="form-input" type="number" value="197"></div>
+                            <div class="form-group"><label class="form-label">Tempo de Aprovação Automática (min)</label><input class="form-input" type="number" value="10"></div>
+                            <div class="form-group"><label class="form-label">Chave PIX</label><input class="form-input" value="admin@iaxo.com"></div>
+                            <button class="btn-primary" style="max-width:200px;margin-top:10px" onclick="saveConfig()">Salvar Alterações</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header"><h3><i class="fas fa-sliders-h"></i> Configurações de Leads</h3></div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Custo Padrão por Lead (R$)</label>
+                                <input class="form-input" type="number" value="19.90">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Fontes Permitidas</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" checked style="accent-color:var(--primary)"> Instagram</label>
+                                    <label><input type="checkbox" checked style="accent-color:var(--primary)"> Google</label>
+                                    <label><input type="checkbox" checked style="accent-color:var(--primary)"> Facebook</label>
+                                    <label><input type="checkbox" style="accent-color:var(--primary)"> TikTok</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mostrar custo do lead ao usuário</label>
+                                <select class="form-input">
+                                    <option>Sim - Sempre</option>
+                                    <option>Somente após pagamento</option>
+                                    <option>Não</option>
+                                </select>
+                            </div>
+                            <button class="btn-primary" style="max-width:200px;margin-top:10px" onclick="saveConfig()">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="newUserModal" onclick="closeModal('newUserModal')">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Novo Usuário</h3>
+                <button onclick="closeModal('newUserModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Nome</label><input class="form-input" placeholder="Nome completo" data-field="name"></div>
+                    <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" type="email" placeholder="email@email.com" data-field="email"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Telefone</label><input class="form-input" placeholder="(11) 99999-9999" data-field="phone"></div>
+                    <div class="form-group"><label class="form-label">WhatsApp</label><input class="form-input" placeholder="5511999999999"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Negócio</label><input class="form-input" placeholder="Nome do negócio" data-field="business"></div>
+                <div class="form-group">
+                    <label class="form-label">Nicho</label>
+                    <select class="form-input" data-field="niche"><option>Saúde</option><option>E-commerce</option><option>Alimentação</option><option>Imobiliário</option><option>Educação</option><option>Outro</option></select>
+                </div>
+                <div class="form-group"><label class="form-label">Senha</label><input class="form-input" type="password" placeholder="••••••••" data-field="password"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('newUserModal')">Cancelar</button>
+                <button class="btn-primary" onclick="createUser()">Criar Usuário</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="editUserModal" onclick="closeModal('editUserModal')">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Editar Usuário</h3>
+                <button onclick="closeModal('editUserModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Nome</label><input class="form-input" value="Carlos Silva" data-field="name"></div>
+                    <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" type="email" value="carlos@email.com" data-field="email"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Negócio</label><input class="form-input" value="Clínica Renova" data-field="business"></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Telefone</label><input class="form-input" placeholder="(11) 99999-9999" data-field="phone"></div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select class="form-input" data-field="status"><option value="active">Ativo</option><option value="inactive">Inativo</option><option value="pending">Pendente</option></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Plano</label>
+                        <select class="form-input" data-field="plan"><option value="premium">Premium</option><option value="basic">Básico</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nicho</label>
+                        <select class="form-input" data-field="niche"><option>Saúde</option><option>E-commerce</option><option>Alimentação</option><option>Imobiliário</option><option>Educação</option><option>Estética</option><option>Finanças</option><option>Outro</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('editUserModal')">Cancelar</button>
+                <button class="btn-primary" onclick="saveEditUser()">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="newLeadModal" onclick="closeModal('newLeadModal')">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Adicionar Lead</h3>
+                <button onclick="closeModal('newLeadModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Nome do Lead</label><input class="form-input" placeholder="Nome completo"></div>
+                    <div class="form-group"><label class="form-label">WhatsApp</label><input class="form-input" placeholder="5511999999999"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Fonte</label>
+                        <select class="form-input"><option>Instagram</option><option>Google</option><option>Facebook</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Campanha</label>
+                        <select class="form-input"><option>Implantes Dentários</option><option>Black Friday 2026</option><option>Serviços Premium</option></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Enviar para (Usuário)</label>
+                    <select class="form-input"><option>Clínica Renova</option><option>E-Shop Brasil</option><option>Studio Beleza</option></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Custo do Lead (R$)</label>
+                    <input class="form-input" type="number" step="0.01" placeholder="19.90">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('newLeadModal')">Cancelar</button>
+                <button class="btn-primary" onclick="closeModal('newLeadModal')">Adicionar Lead</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="newPaymentModal" onclick="closeModal('newPaymentModal')">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Criar Pagamento PIX</h3>
+                <button onclick="closeModal('newPaymentModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <select class="form-input"><option>Carlos Silva - Clínica Renova</option><option>Maria Santos - E-Shop Brasil</option><option>Pedro Lima - Imobiliária Horizonte</option></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo de Pagamento</label>
+                    <select class="form-input"><option>Mensalidade</option><option>Campanha - Investimento</option></select>
+                </div>
+                <div class="form-group"><label class="form-label">Valor (R$)</label><input class="form-input" type="number" step="0.01" placeholder="197.00"></div>
+                <div class="form-group"><label class="form-label">Descrição</label><input class="form-input" placeholder="Ex: Mensalidade Agosto 2026"></div>
+                <div class="pix-preview">
+                    <h4>Preview do PIX</h4>
+                    <div class="qr-placeholder">
+                        <i class="fas fa-qrcode" style="font-size:80px;color:var(--primary-light)"></i>
+                        <p>Código PIX será gerado automaticamente</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('newPaymentModal')">Cancelar</button>
+                <button class="btn-primary" onclick="closeModal('newPaymentModal')"><i class="fas fa-qrcode"></i> Gerar PIX</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="panel-bottom-nav" id="panelBottomNav">
+        <a href="#" class="pbn-item active" onclick="showPage('dashboard')"><i class="fas fa-th-large"></i><span>Home</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('usuarios')"><i class="fas fa-users"></i><span>Users</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('campanhas')"><i class="fas fa-ad"></i><span>Camps</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('leads')"><i class="fas fa-address-book"></i><span>Leads</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('chat')"><i class="fas fa-headset"></i><span>Suporte</span></a>
+    </nav>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('../sw.js').catch(function(){});
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/firebase-services.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
