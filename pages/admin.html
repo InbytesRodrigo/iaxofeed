@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050510">
     <title>Painel Admin - IAXO Feed</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -1042,6 +1045,15 @@
             </div>
         </div>
     </div>
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="panel-bottom-nav" id="panelBottomNav">
+        <a href="#" class="pbn-item active" onclick="showPage('dashboard')"><i class="fas fa-th-large"></i><span>Home</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('usuarios')"><i class="fas fa-users"></i><span>Users</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('campanhas')"><i class="fas fa-ad"></i><span>Camps</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('leads')"><i class="fas fa-address-book"></i><span>Leads</span></a>
+        <a href="#" class="pbn-item" onclick="showPage('chat')"><i class="fas fa-headset"></i><span>Suporte</span></a>
+    </nav>
 
     <div class="toast-container" id="toastContainer"></div>
 

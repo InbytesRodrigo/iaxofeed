@@ -59,6 +59,9 @@ function showPage(page) {
     };
 
     document.getElementById('pageTitle').textContent = titles[page] || page;
+    // Sync bottom nav
+    var bniMap = { dashboard: 0, campanhas: 1, leads: 2, solicitar: 3, chat: 4 };
+    document.querySelectorAll('.pbn-item').forEach(function(b, i) { b.classList.toggle('active', i === bniMap[page]); });
     // Close sidebar on mobile
     if (window.innerWidth <= 768) {
         var sb = document.getElementById('sidebar');
