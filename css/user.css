@@ -206,24 +206,22 @@
    RESPONSIVE - MOBILE APP-LIKE
    ========================================== */
 @media (max-width: 768px) {
-    /* Sidebar overlay */
-    .sidebar {
-        transform: translateX(-100%);
-        width: 280px;
-        box-shadow: 4px 0 30px rgba(0,0,0,0.5);
-    }
-    .sidebar.open { transform: translateX(0); }
+    /* Sidebar completely hidden (panel.css handles this) */
     .main-content { margin-left: 0; }
-    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+    .menu-toggle { display: none !important; }
     
     /* Topbar compact */
-    .topbar { padding: 12px 16px; }
-    .page-title { font-size: 18px; }
-    .topbar-search { display: none; }
-    .topbar-actions { gap: 6px; }
+    .topbar { padding: 12px 16px; padding-top: calc(env(safe-area-inset-top, 0px) + 12px); justify-content: center; }
+    .topbar-left { justify-content: center; width: 100%; }
+    .topbar-right { display: none; }
+    .page-title { font-size: 18px; text-align: center; }
     
     /* Page content */
     .page-content { padding: 16px; }
+    .page-actions { flex-direction: column; align-items: stretch; }
+    .action-left { flex-direction: column; gap: 8px; }
+    .action-left .search-bar { display: flex; width: 100% !important; }
+    .action-left .search-bar input { width: 100%; }
     
     /* Stats - 2 cols */
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -232,66 +230,58 @@
     .stat-value { font-size: 22px; }
     .stat-label { font-size: 11px; }
     
-    /* Campaigns - single column, compact cards */
+    /* Campaigns compact - single column */
+    .campaigns-grid-compact { grid-template-columns: 1fr; gap: 12px; }
     .campaigns-grid { grid-template-columns: 1fr; gap: 12px; }
     .campaign-card { border-radius: 14px; }
     .campaign-image { height: 120px; }
     .campaign-info { padding: 12px; }
     .campaign-info h3 { font-size: 14px; }
     .campaign-meta span { font-size: 11px; }
+    .ccard-metrics { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    
+    /* Welcome banner */
+    .welcome-banner { padding: 20px; flex-direction: column; text-align: center; gap: 12px; }
+    .welcome-text h2 { font-size: 18px; }
+    
+    /* Request form */
+    .request-form { padding: 0; }
+    .rf-section { padding: 18px; }
+    .rf-section-head { gap: 10px; }
+    .rf-section-head h3 { font-size: 14px; }
+    .tg-row { grid-template-columns: 1fr; }
+    .rf-resumo { grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px; }
+    .mm-option { padding: 10px; font-size: 12px; }
     
     /* Leads table */
     .table-container { border-radius: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .leads-table th { padding: 10px 12px; font-size: 10px; white-space: nowrap; }
-    .leads-table td { padding: 10px 12px; font-size: 12px; white-space: nowrap; }
+    .data-table { min-width: 700px; }
+    .data-table th { padding: 10px 12px; font-size: 10px; white-space: nowrap; }
+    .data-table td { padding: 10px 12px; font-size: 12px; white-space: nowrap; }
+    .leads-summary { flex-wrap: wrap; gap: 6px; }
+    
+    /* Recent leads */
+    .recent-lead { padding: 12px; gap: 10px; }
     
     /* Payments */
-    .payments-grid { grid-template-columns: 1fr; gap: 12px; }
+    .payments-user-grid { grid-template-columns: 1fr; gap: 12px; }
+    .payments-user-grid .card:last-child { grid-column: auto; max-width: 100%; }
     .payment-amount { font-size: 24px; }
+    .sub-price { font-size: 24px; }
     
-    /* Chat - full width */
-    .chat-section { flex-direction: column; height: calc(100vh - 100px); }
+    /* Chat */
+    .chat-layout { flex-direction: column; height: calc(100vh - 100px); }
     .chat-sidebar { width: 100%; max-height: 200px; }
     .chat-messages { padding: 12px; }
     .chat-input-area { padding: 12px; }
     .chat-input { font-size: 14px; padding: 10px 14px; }
     
-    /* Solicitar Campanha - full width */
-    .request-steps { gap: 4px; }
-    .request-step { font-size: 11px; padding: 4px 8px; }
-    .request-form { padding: 16px; }
-    .form-row { grid-template-columns: 1fr; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { font-size: 12px; }
-    .form-group input, .form-group select, .form-group textarea {
-        font-size: 14px; padding: 10px 12px; border-radius: 10px;
-    }
-    .checkbox-group { grid-template-columns: 1fr; gap: 8px; }
-    .btn-submit { width: 100%; padding: 14px; font-size: 14px; }
-    .btn-back { padding: 10px 16px; font-size: 13px; }
-    .btn-next { padding: 10px 20px; font-size: 13px; }
-    .step-nav { padding: 12px 16px; }
-    
-    /* File upload */
-    .file-upload { padding: 20px; border-width: 2px; }
-    .file-upload i { font-size: 28px; }
-    
-    /* Sidebar links - mobile */
-    .sidebar-links a {
-        padding: 10px 20px;
-        font-size: 13px;
-        gap: 10px;
-    }
-    .sidebar-links a i { width: 18px; text-align: center; }
-    
-    /* User info in sidebar */
-    .user-info { padding: 12px 20px; }
-    .user-avatar { width: 40px; height: 40px; font-size: 16px; }
-    .user-name { font-size: 14px; }
-    .user-plan { font-size: 11px; }
-    
     /* Notif */
     .notif-btn { width: 36px; height: 36px; }
+    .notif-panel { width: 100%; }
+    
+    /* Dashboard grid */
+    .dashboard-grid-user { grid-template-columns: 1fr; }
 }
 
 /* ==========================================

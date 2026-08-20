@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
     --primary: #FF6B2C; --primary-light: #FF8F5E; --primary-dark: #E85A1B;
-    --secondary: #06D6A0; --accent: #FF4757;
+    --secondary: #06D6A0; --accent: #FF4757; --yellow: #FFB347;
     --bg-dark: #111111; --bg-sidebar: #161616; --bg-card: #1C1C1C; --bg-card-hover: #242424;
     --text-primary: #FFFFFF; --text-secondary: #A0A0A0; --text-muted: #6B6B6B;
     --border: #2A2A2A;
@@ -284,7 +284,7 @@ a { text-decoration: none; color: inherit; }
 .qr-placeholder p { margin-top: 10px; font-size: 12px; color: var(--text-muted); }
 
 /* Toast */
-.toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+.toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 10px; max-width: 400px; width: calc(100% - 32px); }
 .toast { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 20px; display: flex; align-items: center; gap: 10px; min-width: 280px; animation: notifSlide 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-size: 13px; transition: all 0.3s ease; }
 .toast.success { border-left: 4px solid var(--secondary); }
 .toast.success i { color: var(--secondary); }
@@ -292,7 +292,7 @@ a { text-decoration: none; color: inherit; }
 .toast.info i { color: var(--primary-light); }
 .toast.warning { border-left: 4px solid var(--yellow); }
 .toast.warning i { color: var(--yellow); }
-@keyframes notifSlide { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes notifSlide { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 /* ==========================================
    PANEL BOTTOM NAV (hidden on desktop, shown on mobile)
@@ -378,8 +378,8 @@ a { text-decoration: none; color: inherit; }
     .search-bar { display: none; }
     
     /* Page content */
-    .page-content { padding: 16px; }
-    .page-actions { flex-direction: column; align-items: stretch; }
+    .page-content { padding: 16px 12px; }
+    .page-actions { flex-direction: column; align-items: stretch; gap: 10px; }
     .action-left { flex-direction: column; gap: 8px; }
     .action-left .search-bar { display: flex; width: 100% !important; }
     .action-left .search-bar input { width: 100%; }
@@ -390,20 +390,30 @@ a { text-decoration: none; color: inherit; }
     
     /* Stats grid - 2 cols then 1 */
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .stat-card { padding: 16px; gap: 10px; }
+    .stat-card { padding: 14px; gap: 10px; }
     .stat-card-icon { width: 44px; height: 44px; border-radius: 12px; font-size: 18px; }
     .stat-card-value { font-size: 22px; }
     .stat-card-label { font-size: 11px; }
     .stat-card-change { font-size: 11px; }
     
     /* Tables - horizontal scroll */
-    .table-container { border-radius: 12px; }
-    .data-table th { padding: 10px 12px; font-size: 10px; }
-    .data-table td { padding: 10px 12px; font-size: 12px; }
+    .table-container { border-radius: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .data-table { min-width: 600px; }
+    .data-table th { padding: 10px 10px; font-size: 10px; white-space: nowrap; }
+    .data-table td { padding: 10px 10px; font-size: 12px; white-space: nowrap; }
     
-    /* Campaigns grid */
+    /* Campaigns grid - single column card */
     .campaigns-grid { grid-template-columns: 1fr; gap: 12px; }
-    .campaign-image { height: 120px; }
+    .campaign-card { display: grid; grid-template-columns: 100px 1fr; grid-template-rows: auto; }
+    .campaign-status { grid-column: 1 / -1; }
+    .campaign-image { height: auto; min-height: 100px; font-size: 32px; }
+    .campaign-body { padding: 14px; }
+    .campaign-body h4 { font-size: 14px; margin-bottom: 2px; }
+    .campaign-client { font-size: 12px; margin-bottom: 10px; }
+    .campaign-stats { gap: 6px; margin-bottom: 10px; }
+    .campaign-stats .label { font-size: 10px; }
+    .campaign-stats .value { font-size: 13px; }
+    .campaign-whatsapp { font-size: 12px; padding-top: 8px; }
     
     /* Payments */
     .payments-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -431,19 +441,21 @@ a { text-decoration: none; color: inherit; }
     /* Notifications */
     .notif-panel { width: 100%; }
     
-    /* Toast */
-    .toast-container { bottom: 16px; right: 16px; left: 16px; }
+    /* Toast - topo da tela */
+    .toast-container { top: calc(env(safe-area-inset-top, 0px) + 12px); bottom: auto; left: 50%; transform: translateX(-50%); right: auto; width: calc(100% - 24px); max-width: 400px; }
     .toast { min-width: auto; width: 100%; font-size: 12px; padding: 12px 14px; }
     
-    /* Fila */
-    .fila-stats { gap: 8px; }
-    .fila-stat { padding: 12px; }
-    .fila-stat-num { font-size: 22px; }
-    .fila-item { flex-direction: column; gap: 12px; padding: 16px; }
+    /* Fila - cards layout */
+    .fila-stats { gap: 6px; }
+    .fila-stat { padding: 10px 8px; flex: 1; min-width: 0; }
+    .fila-stat-num { font-size: 20px; }
+    .fila-stat-label { font-size: 10px; }
+    .fila-item { flex-direction: column; gap: 10px; padding: 14px; }
     .fila-item-left { flex-direction: column; gap: 8px; }
     .fila-item-right { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; margin-left: 0; }
     .fila-targeting { gap: 4px; }
     .fila-targeting span { font-size: 10px; padding: 2px 8px; }
+    .fila-copy { font-size: 11px; }
     .fila-actions { width: 100%; }
     .fila-actions .btn-sm { flex: 1; justify-content: center; }
     
@@ -454,7 +466,8 @@ a { text-decoration: none; color: inherit; }
     .user-mini span { font-size: 11px; }
     
     /* Pending list */
-    .pending-item { padding: 10px; gap: 8px; }
+    .pending-item { padding: 10px; gap: 8px; flex-direction: column; align-items: flex-start; }
+    .pending-actions { width: 100%; display: flex; gap: 8px; }
     .pending-info strong { font-size: 13px; }
     .pending-info span { font-size: 11px; }
 }

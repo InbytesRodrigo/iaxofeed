@@ -122,7 +122,7 @@ function showToast(text, type) {
     // Remover após 4 segundos com animação
     setTimeout(function () {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
+        toast.style.transform = 'translateY(-20px)';
 
         setTimeout(function () {
             toast.remove();

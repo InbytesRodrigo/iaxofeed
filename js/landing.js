@@ -183,8 +183,6 @@ document.head.appendChild(style);
 // Init
 window.addEventListener('load', function() {
     animateStats();
-    setTimeout(randomNotif, 5000);
-    setInterval(randomNotif, 12000);
 });
 
 // Bottom nav active state on scroll

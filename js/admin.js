@@ -279,7 +279,7 @@ function showToast(text, type) {
     container.appendChild(toast);
     setTimeout(function() {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
+        toast.style.transform = 'translateY(-20px)';
         toast.style.transition = '0.3s';
         setTimeout(function() { toast.remove(); }, 300);
     }, 4000);
