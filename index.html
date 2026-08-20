@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAXO Feed - Gestão de Tráfego Inteligente</title>
+    <link rel="stylesheet" href="css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+                <span>IAXO<span class="accent">Feed</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#feed-section">Feed</a>
+                <a href="#features">Funcionalidades</a>
+                <a href="#how">Como funciona</a>
+                <a href="#results">Resultados</a>
+            </div>
+            <div class="nav-actions">
+                <a href="pages/login.html" class="btn-ghost">Entrar</a>
+                <a href="pages/cadastro.html" class="btn-glow">Começar Grátis</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-orb orb-1"></div>
+            <div class="hero-orb orb-2"></div>
+            <div class="hero-orb orb-3"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Plataforma #1 em Gestão de Tráfego
+            </div>
+            <h1>
+                Gere <span class="text-glow">leads qualificados</span><br>
+                com inteligência artificial
+            </h1>
+            <p class="hero-desc">
+                Plataforma completa para gestores de tráfego e empresas. 
+                Algoritmo que aprende seu nicho e entrega leads prontos para converter no WhatsApp.
+            </p>
+            <div class="search-wrap">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Pesquise por nicho, serviço ou região..." id="searchInput">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="search-tags">
+                    <span class="st" onclick="setSearch('Clínicas e Consultórios')"><i class="fas fa-heartbeat"></i> Clínicas</span>
+                    <span class="st" onclick="setSearch('E-commerce e Lojas')"><i class="fas fa-shopping-bag"></i> E-commerce</span>
+                    <span class="st" onclick="setSearch('Restaurantes e Delivery')"><i class="fas fa-utensils"></i> Restaurantes</span>
+                    <span class="st" onclick="setSearch('Imobiliárias')"><i class="fas fa-home"></i> Imobiliárias</span>
+                    <span class="st" onclick="setSearch('Infoprodutos')"><i class="fas fa-graduation-cap"></i> Infoprodutos</span>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="hs-item">
+                    <span class="hs-num" data-target="12847">0</span>
+                    <span class="hs-label">Leads Gerados</span>
+                </div>
+                <div class="hs-divider"></div>
+                <div class="hs-item">
+                    <span class="hs-num" data-target="350">0</span>
+                    <span class="hs-label">Campanhas Ativas</span>
+                </div>
+                <div class="hs-divider"></div>
+                <div class="hs-item">
+                    <span class="hs-num" data-target="98">0</span>
+                    <span class="hs-label">% Satisfação</span>
+                </div>
+            </div>
+        </div>
+        <div class="float-cards">
+            <div class="float-card fc-1">
+                <div class="fc-header">
+                    <div class="fc-avatar" style="background:linear-gradient(135deg,#6C3CE1,#06D6A0)">CR</div>
+                    <div><strong>Clínica Renova</strong><span class="fc-tag">No Ar</span></div>
+                </div>
+                <div class="fc-body">
+                    <div class="fc-metric"><span class="fc-mv">127</span><span class="fc-ml">Leads</span></div>
+                    <div class="fc-metric"><span class="fc-mv green">R$ 19,29</span><span class="fc-ml">Custo/Lead</span></div>
+                </div>
+                <div class="fc-footer"><span class="fc-dot green"></span> Ativo há 12 dias</div>
+            </div>
+            <div class="float-card fc-2">
+                <div class="fc-header">
+                    <div class="fc-avatar" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">ES</div>
+                    <div><strong>E-Shop Brasil</strong><span class="fc-tag">Aprendizado</span></div>
+                </div>
+                <div class="fc-body">
+                    <div class="fc-metric"><span class="fc-mv">23</span><span class="fc-ml">Leads</span></div>
+                    <div class="fc-metric"><span class="fc-mv">R$ 34,78</span><span class="fc-ml">Custo/Lead</span></div>
+                </div>
+                <div class="fc-footer"><span class="fc-dot yellow"></span> Estabilizando...</div>
+            </div>
+            <div class="float-card fc-3">
+                <div class="fc-notification">
+                    <div class="fcn-icon"><i class="fas fa-user-plus"></i></div>
+                    <div class="fcn-text">
+                        <strong>Novo lead!</strong>
+                        <span>Fernanda - Instagram</span>
+                    </div>
+                    <span class="fcn-time">agora</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feed-section" id="feed-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Feed de Anúncios</span>
+                <h2>Campanhas <span class="text-glow">em destaque</span></h2>
+                <p>Veja os anúncios ativos dos nossos clientes. Clique em um nicho ou pesquise acima para filtrar.</p>
+            </div>
+            <div class="feed-filters">
+                <button class="feed-filter active" data-filter="all">Todos</button>
+                <button class="feed-filter" data-filter="saude">Saúde</button>
+                <button class="feed-filter" data-filter="ecommerce">E-commerce</button>
+                <button class="feed-filter" data-filter="alimentacao">Alimentação</button>
+                <button class="feed-filter" data-filter="imobiliario">Imobiliário</button>
+                <button class="feed-filter" data-filter="beleza">Beleza</button>
+                <button class="feed-filter" data-filter="educacao">Educação</button>
+                <button class="feed-filter" data-filter="financas">Finanças</button>
+            </div>
+            <div class="feed-grid" id="feedGrid">
+                <div class="feed-card" data-niche="saude" data-search="clínica consultório implante dentista saúde">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#1a0533,#6C3CE1)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-tooth"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#6C3CE1,#06D6A0)">CR</div>
+                            <div><strong>Clínica Renova</strong><span class="feed-nome">São Paulo, SP</span></div>
+                        </div>
+                        <p class="feed-card-copy">Seu sorriso merece o melhor! Implantes dentários com tecnologia de ponta. Primeira consulta grátis!</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>127</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 19,29</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>12</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Vi+o+an%C3%BAncio+e+gostaria+de+mais+informa%C3%A7%C3%B5es." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>247</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="ecommerce" data-search="e-commerce loja online shopping moda black friday">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#331a0a,#FFB347)">
+                        <div class="feed-card-badge learning"><i class="fas fa-graduation-cap"></i> Aprendizado</div>
+                        <div class="feed-card-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">ES</div>
+                            <div><strong>E-Shop Brasil</strong><span class="feed-nome">Brasil inteiro</span></div>
+                        </div>
+                        <p class="feed-card-copy">BLACK FRIDAY! Até 70% OFF em todos os produtos. Frete grátis acima de R$99. Corre que esgota!</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>23</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 34,78</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>5</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511888888888?text=Ol%C3%A1%21+Vi+o+an%C3%BAncio+e+quero+aproveitar+a+promo%C3%A7%C3%A3o!" target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>189</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="alimentacao" data-search="restaurante delivery comida comida saudável gastronomia gourmet">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#1a2a0a,#06D6A0)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">GE</div>
+                            <div><strong>Gourmet Express</strong><span class="feed-nome">Rio de Janeiro, RJ</span></div>
+                        </div>
+                        <p class="feed-card-copy">Delivery Premium na sua casa! Comida artesanal preparada com carinho. Entrega grátis no primeiro pedido.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>89</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 12,30</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>18</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511777777777?text=Ol%C3%A1%21+Quero+fazer+um+pedido!" target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>156</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="imobiliario" data-search="imobiliária apartamento casa imóvel moradia">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#0a1a33,#667eea)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-home"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">PH</div>
+                            <div><strong>Imobiliária Horizonte</strong><span class="feed-nome">São Paulo, SP</span></div>
+                        </div>
+                        <p class="feed-card-copy">Apartamentos a partir de R$ 280.000! Financiamento facilitado. Agende sua visita gratuita pelo WhatsApp.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>201</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 22,40</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>25</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511666666666?text=Ol%C3%A1%21+Tenho+interesse+nos+apartamentos." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>312</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="beleza" data-search="beleza estética sobrancelha maquiagem skincare skincare salão">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#331a2e,#FF6B6B)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-spa"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">SB</div>
+                            <div><strong>Studio Beleza</strong><span class="feed-nome">Rio de Janeiro, RJ</span></div>
+                        </div>
+                        <p class="feed-card-copy">Design de Sobrancelhas premium! Agende sua avaliação gratuita. Vagas limitadas esta semana.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>189</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 15,80</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>20</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511555555555?text=Ol%C3%A1%21+Gostaria+de+agendar." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>203</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="financas" data-search="finanças investimento consultoria banco dinheiro renda">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#1a1a33,#8B5CF6)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">FP</div>
+                            <div><strong>Finanzas Pro</strong><span class="feed-nome">Belo Horizonte, MG</span></div>
+                        </div>
+                        <p class="feed-card-copy">Pare de perder dinheiro! Consultoria financeira personalizada. Aumente seus rendimentos em 30 dias.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>67</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 28,50</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>15</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511444444444?text=Ol%C3%A1%21+Quero+melhorar+meus+rendimentos." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>98</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="educacao" data-search="curso educação ensino online infoproduto mentor coaching">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#0a2a1a,#06D6A0)">
+                        <div class="feed-card-badge learning"><i class="fas fa-graduation-cap"></i> Aprendizado</div>
+                        <div class="feed-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#06D6A0,#6C3CE1)">EC</div>
+                            <div><strong>Educação Prime</strong><span class="feed-nome">Brasil inteiro</span></div>
+                        </div>
+                        <p class="feed-card-copy">Domine o mercado digital! Curso completo com mentoria e certificado. Vagas limitadas - garanta a sua!</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>42</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 31,20</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>3</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511333333333?text=Ol%C3%A1%21+Tenho+interesse+no+curso." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>76</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="saude" data-search="academia fitness personal treino exercício saúde">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#1a0a33,#FF6B6B)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#FF6B6B,#6C3CE1)">TF</div>
+                            <div><strong>Total Fit</strong><span class="feed-nome">Curitiba, PR</span></div>
+                        </div>
+                        <p class="feed-card-copy">Transforme seu corpo! Personal trainer online com plano alimentar incluso. Primeira semana grátis.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>156</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 16,90</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>22</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511222222222?text=Ol%C3%A1%21+Quero+começar+a+treinar." target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>284</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-card" data-niche="alimentacao" data-search="pizzaria pizza hamburguer lanchonete sanduiche">
+                    <div class="feed-card-img" style="background:linear-gradient(135deg,#2a1a0a,#FFB347)">
+                        <div class="feed-card-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                        <div class="feed-card-icon"><i class="fas fa-pizza-slice"></i></div>
+                        <div class="feed-card-format">1080x1350</div>
+                    </div>
+                    <div class="feed-card-body">
+                        <div class="feed-card-user">
+                            <div class="feed-avatar" style="background:linear-gradient(135deg,#FFB347,#FF6B6B)">BZ</div>
+                            <div><strong>Bella Pizza</strong><span class="feed-nome">Porto Alegre, RS</span></div>
+                        </div>
+                        <p class="feed-card-copy">Pizza artesanal com massa fermentada 72h! Peça pelo WhatsApp e ganhe 20% OFF no primeiro pedido.</p>
+                        <div class="feed-card-stats">
+                            <div class="fcs"><i class="fas fa-users"></i> <strong>234</strong> leads</div>
+                            <div class="fcs"><i class="fas fa-coins"></i> <strong>R$ 8,90</strong>/lead</div>
+                            <div class="fcs"><i class="fas fa-clock"></i> <strong>30</strong> dias</div>
+                        </div>
+                        <div class="feed-card-actions">
+                            <a href="https://wa.me/5511111111111?text=Ol%C3%A1%21+Quero+fazer+um+pedido!" target="_blank" class="feed-wa"><i class="fab fa-whatsapp"></i> Falar Agora</a>
+                            <button class="feed-like" onclick="toggleLike(this)"><i class="far fa-heart"></i> <span>421</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feed-empty hidden" id="feedEmpty">
+                <i class="fas fa-search"></i>
+                <p>Nenhum resultado encontrado para "<span id="feedEmptyQuery"></span>"</p>
+                <span>Tente pesquisar por outro nicho ou clique em "Todos"</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Funcionalidades</span>
+                <h2>Tudo que você precisa para <span class="text-glow">escalar seus resultados</span></h2>
+                <p>Ferramentas poderosas que simplificam a gestão de tráfego e maximizam sua conversão.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="fc-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Algoritmo Adaptativo</h3>
+                    <p>O sistema aprende o nicho do seu negócio e otimiza automaticamente a entrega dos anúncios para o público certo.</p>
+                </div>
+                <div class="feature-card featured">
+                    <div class="fc-badge">Mais Popular</div>
+                    <div class="fc-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Leads em Tempo Real</h3>
+                    <p>Cada lead aparece instantaneamente no seu painel. Clique e envie direto para o WhatsApp com uma mensagem personalizada.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="fc-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Métricas Facebook-style</h3>
+                    <p>Campanha, investimento e custo por lead visualizados de forma clara e objetiva, igual ao Facebook Ads.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="fc-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Aprovação em 10min</h3>
+                    <p>Sua campanha vai para modo aprendizado e em até 10 minutos é publicada automaticamente.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="fc-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>WhatsApp Integrado</h3>
+                    <p>Leads vão direto para seu WhatsApp com mensagem pré-definida. Taxa de conversão até 4x maior.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="fc-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Suporte 24h</h3>
+                    <p>Chat de suporte integrado. Tire dúvidas sobre campanhas, pagamentos ou qualquer funcionalidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-section" id="how">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Como funciona</span>
+                <h2>Do cadastro ao <span class="text-glow">primeiro lead</span> em minutos</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-line"></div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                        <h3>Cadastre-se</h3>
+                        <p>Crie sua conta em 30 segundos. Configure seu nicho e dados do WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-line"></div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                        <h3>Ative seu plano</h3>
+                        <p>Pague via PIX e tenha acesso imediato ao painel completo.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-line"></div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Solicite campanha</h3>
+                        <p>Envie sua copy, imagem e orçamento. Nós criamos e aprovamos em até 10 min.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <div class="step-content">
+                        <div class="step-icon"><i class="fas fa-users"></i></div>
+                        <h3>Receba leads</h3>
+                        <p>Leads qualificados chegam no painel em tempo real. Clique e envie para o WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results" id="results">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Resultados</span>
+                <h2>Números que <span class="text-glow">falam por si</span></h2>
+            </div>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="rc-icon" style="color:#06D6A0"><i class="fas fa-arrow-up"></i></div>
+                    <div class="rc-value">+340%</div>
+                    <div class="rc-label">Aumento médio em leads</div>
+                </div>
+                <div class="result-card">
+                    <div class="rc-icon" style="color:#8B5CF6"><i class="fas fa-coins"></i></div>
+                    <div class="rc-value">R$ 18,50</div>
+                    <div class="rc-label">Custo médio por lead</div>
+                </div>
+                <div class="result-card">
+                    <div class="rc-icon" style="color:#FFB347"><i class="fas fa-clock"></i></div>
+                    <div class="rc-value">< 10min</div>
+                    <div class="rc-label">Tempo de aprovação</div>
+                </div>
+                <div class="result-card">
+                    <div class="rc-icon" style="color:#FF6B6B"><i class="fab fa-whatsapp"></i></div>
+                    <div class="rc-value">78%</div>
+                    <div class="rc-label">Taxa de resposta WhatsApp</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-inner">
+            <h2>Pronto para gerar leads qualificados?</h2>
+            <p>Comece hoje e veja seus resultados em menos de 24 horas.</p>
+            <div class="cta-buttons">
+                <a href="pages/cadastro.html" class="btn-glow btn-lg">
+                    <i class="fas fa-rocket"></i> Criar Conta Grátis
+                </a>
+                <a href="pages/login.html" class="btn-ghost btn-lg">
+                    Já tenho conta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+                        <span>IAXO<span class="accent">Feed</span></span>
+                    </div>
+                    <p>Gestão de tráfego inteligente para o seu negócio.</p>
+                </div>
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h4>Plataforma</h4>
+                        <a href="pages/login.html">Entrar</a>
+                        <a href="pages/cadastro.html">Cadastrar</a>
+                        <a href="#features">Funcionalidades</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Suporte</h4>
+                        <a href="#">Central de Ajuda</a>
+                        <a href="#">Contato</a>
+                        <a href="#">Termos de Uso</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 IAXO Feed. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notif-container" id="notifContainer"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/landing.js"></script>
+</body>
+</html>

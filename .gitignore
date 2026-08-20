@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+auth-export.json
+firebase-debug.log
+scripts/seed.js

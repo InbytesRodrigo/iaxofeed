@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Usuário - IAXO Feed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/panel.css">
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+    <div class="panel-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo"><span class="logo-i">I</span><span class="logo-axo">AXO</span><span class="logo-feed">Feed</span></a>
+                <span class="sidebar-badge user-badge">USUÁRIO</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-item" data-page="campanhas" onclick="showPage('campanhas')"><i class="fas fa-ad"></i><span>Campanhas</span><span class="nav-count pulse">3</span></a>
+                <a href="#" class="nav-item" data-page="leads" onclick="showPage('leads')"><i class="fas fa-address-book"></i><span>Meus Leads</span><span class="nav-count">342</span></a>
+                <a href="#" class="nav-item" data-page="solicitar" onclick="showPage('solicitar')"><i class="fas fa-plus-circle"></i><span>Solicitar Campanha</span></a>
+                <a href="#" class="nav-item" data-page="pagamentos" onclick="showPage('pagamentos')"><i class="fas fa-qrcode"></i><span>Pagamentos</span></a>
+                <a href="#" class="nav-item" data-page="chat" onclick="showPage('chat')"><i class="fas fa-headset"></i><span>Suporte</span><span class="nav-count">Online</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-avatar"><div class="avatar-circle" style="background:var(--gradient-1)">CS</div><div><div class="admin-name">Carlos Silva</div><div class="admin-role">Clínica Renova</div></div></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <div class="live-indicator"><span class="live-dot"></span> AO VIVO</div>
+                    <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Buscar..."></div>
+                    <button class="topbar-btn" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+                </div>
+            </header>
+
+            <div class="notif-panel" id="notifPanel">
+                <div class="notif-header"><h3>Notificações</h3><button onclick="toggleNotifications()"><i class="fas fa-times"></i></button></div>
+                <div class="notif-list" id="notifList">
+                    <div class="notif-item notif-new"><div class="notif-icon success"><i class="fas fa-user-check"></i></div><div class="notif-info"><p><strong>Novo Lead!</strong> Fernanda via Instagram</p><span>2 min</span></div></div>
+                    <div class="notif-item notif-new"><div class="notif-icon info"><i class="fas fa-ad"></i></div><div class="notif-info"><p><strong>Campanha no ar!</strong> Implantes Dentários</p><span>15 min</span></div></div>
+                </div>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div class="page-content" id="page-dashboard">
+                <div class="welcome-banner">
+                    <div class="welcome-text"><h2>Bom dia, Carlos!</h2><p>Seus anúncios estão gerando leads qualificados. Resumo de hoje:</p></div>
+                    <div class="welcome-illustration"><i class="fas fa-rocket"></i></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-card-icon" style="background:rgba(6,214,160,0.15);color:var(--secondary)"><i class="fas fa-users"></i></div><div class="stat-card-info"><span class="stat-card-label">Leads Hoje</span><span class="stat-card-value">23</span><span class="stat-card-change positive"><i class="fas fa-arrow-up"></i> +12%</span></div></div>
+                    <div class="stat-card"><div class="stat-card-icon" style="background:rgba(108,60,225,0.15);color:var(--primary-light)"><i class="fas fa-ad"></i></div><div class="stat-card-info"><span class="stat-card-label">Campanhas Ativas</span><span class="stat-card-value">3</span><span class="stat-card-change positive"><i class="fas fa-circle" style="font-size:8px;color:var(--secondary)"></i> No ar</span></div></div>
+                    <div class="stat-card"><div class="stat-card-icon" style="background:rgba(255,179,71,0.15);color:#FFB347"><i class="fas fa-coins"></i></div><div class="stat-card-info"><span class="stat-card-label">Investido Hoje</span><span class="stat-card-value">R$ 458</span><span class="stat-card-change positive">Custo/lead: R$ 19,91</span></div></div>
+                    <div class="stat-card"><div class="stat-card-icon" style="background:rgba(255,107,107,0.15);color:var(--accent)"><i class="fab fa-whatsapp"></i></div><div class="stat-card-info"><span class="stat-card-label">Conversões</span><span class="stat-card-value">18</span><span class="stat-card-change positive">78% resposta</span></div></div>
+                </div>
+                <div class="card" style="margin-bottom:20px">
+                    <div class="card-header"><h3><i class="fas fa-chart-line"></i> Performance</h3><span class="text-muted" style="font-size:13px">Tempo real</span></div>
+                    <div class="card-body" style="padding:0">
+                        <table class="data-table">
+                            <thead><tr><th>Campanha</th><th>Status</th><th>Investido</th><th>Leads</th><th>Custo/Lead</th><th>ROI</th><th>Ações</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Implantes Dentários</strong></td><td><span class="status-badge active"><i class="fas fa-circle" style="font-size:6px"></i> No Ar</span></td><td><strong>R$ 2.450</strong></td><td><strong>127</strong></td><td><span style="color:var(--secondary);font-weight:700">R$ 19,29</span></td><td><span style="color:var(--secondary)">+340%</span></td><td><a href="https://wa.me/5511999999999" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                                <tr><td><strong>Limpeza Dental</strong></td><td><span class="status-badge active"><i class="fas fa-circle" style="font-size:6px"></i> No Ar</span></td><td><strong>R$ 1.200</strong></td><td><strong>89</strong></td><td><span style="color:var(--secondary);font-weight:700">R$ 13,48</span></td><td><span style="color:var(--secondary)">+520%</span></td><td><a href="https://wa.me/5511999999999" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                                <tr><td><strong>Clareamento</strong></td><td><span class="status-badge pending"><i class="fas fa-circle" style="font-size:6px"></i> Aprendizado</span></td><td><strong>R$ 380</strong></td><td><strong>14</strong></td><td><span style="color:#FFB347;font-weight:700">R$ 27,14</span></td><td>...</td><td><span class="btn-sm" style="opacity:.5"><i class="fas fa-clock"></i></span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="dashboard-grid-user">
+                    <div class="card"><div class="card-header"><h3><i class="fas fa-chart-area"></i> Leads por Dia</h3></div><div class="card-body"><div class="chart-container"><canvas id="leadsChart"></canvas></div></div></div>
+                    <div class="card">
+                        <div class="card-header"><h3><i class="fas fa-bolt"></i> Leads Recentes</h3><button class="btn-sm" onclick="showPage('leads')">Ver todos</button></div>
+                        <div class="card-body" style="padding:0">
+                            <div class="recent-leads">
+                                <div class="recent-lead"><div class="lead-avatar" style="background:var(--gradient-1)">FA</div><div class="lead-info"><strong>Fernanda Almeida</strong><span><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</span></div><a href="https://wa.me/5511977777777" target="_blank" class="lead-whatsapp"><i class="fab fa-whatsapp"></i></a></div>
+                                <div class="recent-lead"><div class="lead-avatar" style="background:var(--gradient-2)">BF</div><div class="lead-info"><strong>Bruno Ferreira</strong><span><i class="fab fa-google" style="color:#4285F4"></i> Google</span></div><a href="https://wa.me/5511966666666" target="_blank" class="lead-whatsapp"><i class="fab fa-whatsapp"></i></a></div>
+                                <div class="recent-lead"><div class="lead-avatar" style="background:var(--gradient-3)">JM</div><div class="lead-info"><strong>Juliana Mendes</strong><span><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</span></div><a href="https://wa.me/5511955555555" target="_blank" class="lead-whatsapp"><i class="fab fa-whatsapp"></i></a></div>
+                                <div class="recent-lead"><div class="lead-avatar" style="background:linear-gradient(135deg,#FF6B6B,#FFB347)">LP</div><div class="lead-info"><strong>Lucas Pereira</strong><span><i class="fab fa-facebook" style="color:#1877F2"></i> Facebook</span></div><a href="https://wa.me/5511944444444" target="_blank" class="lead-whatsapp"><i class="fab fa-whatsapp"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAMPANHAS - COMPACTO -->
+            <div class="page-content hidden" id="page-campanhas">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="filter-tabs"><button class="filter-tab active">Todas</button><button class="filter-tab">No Ar</button><button class="filter-tab">Aprendizado</button><button class="filter-tab">Fila</button></div>
+                    </div>
+                </div>
+                <div class="campaigns-grid-compact">
+                    <div class="ccard">
+                        <div class="ccard-media" style="background:linear-gradient(135deg,#1a0533,#6C3CE1)">
+                            <div class="ccard-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                            <div class="ccard-icon"><i class="fas fa-tooth"></i></div>
+                            <div class="ccard-format">1080x1350</div>
+                        </div>
+                        <div class="ccard-body">
+                            <h4>Implantes Dentários</h4>
+                            <div class="ccard-metrics">
+                                <div class="ccard-m"><span class="ccard-mv">R$ 2.450</span><span class="ccard-ml">Investido</span></div>
+                                <div class="ccard-m"><span class="ccard-mv">127</span><span class="ccard-ml">Leads</span></div>
+                                <div class="ccard-m green"><span class="ccard-mv">R$ 19,29</span><span class="ccard-ml">Custo/Lead</span></div>
+                            </div>
+                            <div class="ccard-bar"><div class="ccard-bar-fill" style="width:62%"></div></div>
+                            <div class="ccard-footer"><a href="https://wa.me/5511999999999" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i> WhatsApp</a><span class="ccard-days">12 dias</span></div>
+                        </div>
+                    </div>
+                    <div class="ccard">
+                        <div class="ccard-media" style="background:linear-gradient(135deg,#331a0a,#FFB347)">
+                            <div class="ccard-badge on"><i class="fas fa-circle"></i> No Ar</div>
+                            <div class="ccard-icon"><i class="fas fa-spa"></i></div>
+                            <div class="ccard-format">1080x1350</div>
+                        </div>
+                        <div class="ccard-body">
+                            <h4>Limpeza Dental</h4>
+                            <div class="ccard-metrics">
+                                <div class="ccard-m"><span class="ccard-mv">R$ 1.200</span><span class="ccard-ml">Investido</span></div>
+                                <div class="ccard-m"><span class="ccard-mv">89</span><span class="ccard-ml">Leads</span></div>
+                                <div class="ccard-m green"><span class="ccard-mv">R$ 13,48</span><span class="ccard-ml">Custo/Lead</span></div>
+                            </div>
+                            <div class="ccard-bar"><div class="ccard-bar-fill" style="width:40%"></div></div>
+                            <div class="ccard-footer"><a href="https://wa.me/5511999999999" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i> WhatsApp</a><span class="ccard-days">8 dias</span></div>
+                        </div>
+                    </div>
+                    <div class="ccard learning-card">
+                        <div class="ccard-media" style="background:linear-gradient(135deg,#0a1a33,#667eea)">
+                            <div class="ccard-badge learning"><i class="fas fa-graduation-cap"></i> Aprendizado</div>
+                            <div class="ccard-icon"><i class="fas fa-smile-beam"></i></div>
+                            <div class="ccard-format">1080x1350</div>
+                        </div>
+                        <div class="ccard-body">
+                            <h4>Clareamento Dental</h4>
+                            <div class="ccard-metrics">
+                                <div class="ccard-m"><span class="ccard-mv">R$ 380</span><span class="ccard-ml">Investido</span></div>
+                                <div class="ccard-m"><span class="ccard-mv">14</span><span class="ccard-ml">Leads</span></div>
+                                <div class="ccard-m"><span class="ccard-mv">R$ 27,14</span><span class="ccard-ml">Custo/Lead</span></div>
+                            </div>
+                            <div class="ccard-bar learning"><div class="ccard-bar-fill" style="width:13%"></div></div>
+                            <div class="ccard-footer"><span class="btn-sm" style="opacity:.5"><i class="fas fa-hourglass-half"></i> Ativo em ~5 min</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEADS -->
+            <div class="page-content hidden" id="page-leads">
+                <div class="page-actions">
+                    <div class="action-left">
+                        <div class="search-bar" style="width:260px"><i class="fas fa-search"></i><input type="text" placeholder="Buscar lead..."></div>
+                        <select class="filter-select"><option>Todas fontes</option><option>Instagram</option><option>Google</option><option>Facebook</option></select>
+                    </div>
+                    <div class="leads-summary">
+                        <span class="lead-summary-item"><i class="fas fa-users"></i> <strong>342</strong> total</span>
+                        <span class="lead-summary-item"><i class="fas fa-arrow-up"></i> <strong>23</strong> hoje</span>
+                        <span class="lead-summary-item cost"><i class="fas fa-coins"></i> Média: <strong>R$ 19,91</strong></span>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>Nome</th><th>WhatsApp</th><th>Fonte</th><th>Campanha</th><th>Custo</th><th>Data</th><th></th></tr></thead>
+                        <tbody>
+                            <tr class="lead-row-new"><td><strong>Fernanda Almeida</strong></td><td><a href="https://wa.me/5511977777777" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 97777-7777</a></td><td><span class="source-badge instagram"><i class="fab fa-instagram"></i> Instagram</span></td><td>Implantes</td><td><span class="lead-cost">R$ 19,29</span></td><td>14:32</td><td><a href="https://wa.me/5511977777777?text=Ol%C3%A1%21" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                            <tr class="lead-row-new"><td><strong>Bruno Ferreira</strong></td><td><a href="https://wa.me/5511966666666" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 96666-6666</a></td><td><span class="source-badge google"><i class="fab fa-google"></i> Google</span></td><td>Limpeza</td><td><span class="lead-cost">R$ 13,48</span></td><td>13:15</td><td><a href="https://wa.me/5511966666666?text=Ol%C3%A1%21" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                            <tr><td><strong>Juliana Mendes</strong></td><td><a href="https://wa.me/5511955555555" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 95555-5555</a></td><td><span class="source-badge instagram"><i class="fab fa-instagram"></i> Instagram</span></td><td>Implantes</td><td><span class="lead-cost">R$ 19,29</span></td><td>12:48</td><td><a href="https://wa.me/5511955555555?text=Ol%C3%A1%21" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                            <tr><td><strong>Lucas Pereira</strong></td><td><a href="https://wa.me/5511944444444" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 94444-4444</a></td><td><span class="source-badge facebook"><i class="fab fa-facebook"></i> Facebook</span></td><td>Implantes</td><td><span class="lead-cost">R$ 19,29</span></td><td>11:20</td><td><a href="https://wa.me/5511944444444?text=Ol%C3%A1%21" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                            <tr><td><strong>Camila Rodrigues</strong></td><td><a href="https://wa.me/5511933333333" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i> (11) 93333-3333</a></td><td><span class="source-badge google"><i class="fab fa-google"></i> Google</span></td><td>Limpeza</td><td><span class="lead-cost">R$ 13,48</span></td><td>Ontem</td><td><a href="https://wa.me/5511933333333?text=Ol%C3%A1%21" target="_blank" class="btn-sm success"><i class="fab fa-whatsapp"></i></a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SOLICITAR CAMPANHA - COM TARGETING AVANÇADO -->
+            <div class="page-content hidden" id="page-solicitar">
+                <div class="request-top">
+                    <div class="rt-info">
+                        <h2><i class="fas fa-crosshairs"></i> Solicitar Nova Campanha</h2>
+                        <p>Defina seu público-alvo com precisão. Quanto mais detalhado, melhor o algoritmo entrega leads qualificados.</p>
+                    </div>
+                    <div class="rt-preview-mini">
+                        <div class="rtp-box">
+                            <div class="rtp-ad">
+                                <div class="rtp-ad-header"><div class="rtp-dot" style="background:var(--gradient-1)"></div><div><strong style="font-size:11px">Clínica Renova</strong><span style="font-size:9px;color:var(--text-muted);display:block">Patrocinado</span></div></div>
+                                <div class="rtp-ad-img"><i class="fas fa-image"></i></div>
+                                <div class="rtp-ad-text"><div class="rtp-line w80"></div><div class="rtp-line w60"></div></div>
+                                <div class="rtp-ad-btn"><i class="fab fa-whatsapp"></i> Falar Agora</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="request-form" onsubmit="submitCampaign(event)">
+                    <!-- Step 1: Dados -->
+                    <div class="rf-section">
+                        <div class="rf-section-head"><span class="rf-num">1</span><div><h3>Dados da Campanha</h3><span class="rf-sub">Informações básicas</span></div></div>
+                        <div class="form-row">
+                            <div class="form-group"><label class="form-label">Nome da Campanha *</label><input class="form-input" placeholder="Ex: Implantes Dentários" required></div>
+                            <div class="form-group"><label class="form-label">Orçamento Mensal (R$) *</label><input class="form-input" type="number" placeholder="Ex: 2000" id="campaignBudget" required></div>
+                        </div>
+                        <div class="form-group"><label class="form-label">Copy do Anúncio *</label><textarea class="form-input" placeholder="Use gatilhos mentais, urgência e um CTA forte para WhatsApp..." rows="4" required></textarea></div>
+                    </div>
+
+                    <!-- Step 2: Mídia -->
+                    <div class="rf-section">
+                        <div class="rf-section-head"><span class="rf-num">2</span><div><h3>Mídia do Anúncio</h3><span class="rf-sub">Imagem ou vídeo (1080x1350 recomendado)</span></div></div>
+                        <div class="media-mode-toggle">
+                            <label class="mm-option active" id="mmUpload"><input type="radio" name="mediaMode" value="upload" checked onchange="toggleMediaMode('upload')"><i class="fas fa-upload"></i> Enviar minha mídia</label>
+                            <label class="mm-option" id="mmGenerate"><input type="radio" name="mediaMode" value="generate" onchange="toggleMediaMode('generate')"><i class="fas fa-magic"></i> Gere para mim</label>
+                        </div>
+                        <div id="uploadArea" class="upload-area">
+                            <div class="mu-dropzone" id="dropzone" onclick="document.getElementById('mediaFile').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');handleDrop(event)">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Arraste e solte ou clique para enviar</span>
+                                <span class="mu-sub">Imagem ou Vídeo - Formato 1080x1350 (4:5)</span>
+                            </div>
+                            <input type="file" id="mediaFile" accept="image/*,video/*" style="display:none" onchange="handleMediaUpload(this)">
+                            <div class="media-preview hidden" id="mediaPreview">
+                                <div class="mp-content"><i class="fas fa-check-circle" style="color:var(--secondary)"></i><span id="mediaFileName">arquivo.jpg</span><button type="button" onclick="removeMedia()"><i class="fas fa-times"></i></button></div>
+                            </div>
+                        </div>
+                        <div id="generateArea" class="generate-area hidden">
+                            <div class="gen-info">
+                                <div class="gen-icon"><i class="fas fa-robot"></i></div>
+                                <div>
+                                    <strong>Nossa equipe cria sua mídia</strong>
+                                    <p>Descreva o que deseja e nossa equipe design cria uma mídia profissional no formato 1080x1350.</p>
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="form-label">Descreva o que deseja na mídia</label><textarea class="form-input" placeholder="Ex: Imagem com fundo azul escuro, foto de sorriso perfeito, texto 'Implantes Dentários - Primeira Consulta Grátis', logo da clínica no canto..." rows="3"></textarea></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Targeting -->
+                    <div class="rf-section">
+                        <div class="rf-section-head"><span class="rf-num">3</span><div><h3>Público-Alvo</h3><span class="rf-sub">Defina quem vai ver seu anúncio</span></div></div>
+                        <div class="targeting-grid">
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-map-marker-alt"></i> Localização</label>
+                                <input class="form-input" placeholder="Ex: São Paulo, SP - Raio 25km">
+                                <span class="form-hint">Cidade, estado ou raio de abrangência</span>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-venus-mars"></i> Gênero</label>
+                                <div class="tg-chips">
+                                    <label class="tg-chip active"><input type="checkbox" checked> Todos</label>
+                                    <label class="tg-chip"><input type="checkbox"> Feminino</label>
+                                    <label class="tg-chip"><input type="checkbox"> Masculino</label>
+                                </div>
+                            </div>
+                            <div class="tg-row">
+                                <div class="tg-group half">
+                                    <label class="form-label"><i class="fas fa-birthday-cake"></i> Idade Mínima</label>
+                                    <input class="form-input" type="number" value="25" min="13" max="80">
+                                </div>
+                                <div class="tg-group half">
+                                    <label class="form-label"><i class="fas fa-birthday-cake"></i> Idade Máxima</label>
+                                    <input class="form-input" type="number" value="55" min="13" max="80">
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-heart"></i> Interesses</label>
+                                <div class="tg-chips multi">
+                                    <label class="tg-chip"><input type="checkbox"> Saúde / Bem-estar</label>
+                                    <label class="tg-chip"><input type="checkbox"> Beleza / Estética</label>
+                                    <label class="tg-chip"><input type="checkbox"> Odontologia</label>
+                                    <label class="tg-chip"><input type="checkbox"> Compras online</label>
+                                    <label class="tg-chip"><input type="checkbox"> Fitness / Academia</label>
+                                    <label class="tg-chip"><input type="checkbox"> Viagens</label>
+                                    <label class="tg-chip"><input type="checkbox"> Tecnologia</label>
+                                    <label class="tg-chip"><input type="checkbox"> Alimentação saudável</label>
+                                    <label class="tg-chip"><input type="checkbox"> Moda / Acessórios</label>
+                                    <label class="tg-chip"><input type="checkbox"> Veículos</label>
+                                    <label class="tg-chip"><input type="checkbox"> Imóveis</label>
+                                    <label class="tg-chip"><input type="checkbox"> Educação</label>
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-mobile-alt"></i> Dispositivo</label>
+                                <div class="tg-chips">
+                                    <label class="tg-chip active"><input type="checkbox" checked> Todos</label>
+                                    <label class="tg-chip"><input type="checkbox"> Android</label>
+                                    <label class="tg-chip"><input type="checkbox"> iOS (iPhone)</label>
+                                    <label class="tg-chip"><input type="checkbox"> Desktop</label>
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-wifi"></i> Conexão</label>
+                                <div class="tg-chips">
+                                    <label class="tg-chip active"><input type="checkbox" checked> Todas</label>
+                                    <label class="tg-chip"><input type="checkbox"> WiFi</label>
+                                    <label class="tg-chip"><input type="checkbox"> 4G/5G</label>
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-shopping-bag"></i> Comportamento de Compra</label>
+                                <div class="tg-chips multi">
+                                    <label class="tg-chip"><input type="checkbox"> Comprou online nos últimos 30 dias</label>
+                                    <label class="tg-chip"><input type="checkbox"> Engajou com anúncios semelhantes</label>
+                                    <label class="tg-chip"><input type="checkbox"> Clicou em WhatsApp Business</label>
+                                    <label class="tg-chip"><input type="checkbox"> Visitou sites de saúde/beleza</label>
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-dollar-sign"></i> Poder de Compra</label>
+                                <div class="tg-chips">
+                                    <label class="tg-chip"><input type="checkbox"> Baixo</label>
+                                    <label class="tg-chip"><input type="checkbox"> Médio</label>
+                                    <label class="tg-chip active"><input type="checkbox" checked> Alto</label>
+                                    <label class="tg-chip"><input type="checkbox"> Muito Alto</label>
+                                </div>
+                            </div>
+                            <div class="tg-group">
+                                <label class="form-label"><i class="fas fa-comment-dots"></i> Observações Adicionais</label>
+                                <textarea class="form-input" placeholder="Alguma informação extra sobre o público que deseja atingir..." rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: WhatsApp -->
+                    <div class="rf-section">
+                        <div class="rf-section-head"><span class="rf-num">4</span><div><h3>WhatsApp</h3><span class="rf-sub">Para onde os leads vão</span></div></div>
+                        <div class="form-row">
+                            <div class="form-group"><label class="form-label">Número do WhatsApp *</label><input class="form-input" value="+5511999999999" required></div>
+                            <div class="form-group"><label class="form-label">Mensagem Automática</label><input class="form-input" value="Olá! Vi o anúncio e gostaria de mais informações."></div>
+                        </div>
+                    </div>
+
+                    <!-- Resumo -->
+                    <div class="rf-resumo">
+                        <div class="rf-resumo-item"><i class="fas fa-coins"></i><div><strong>Investimento</strong><span id="summaryBudget">R$ 0,00</span></div></div>
+                        <div class="rf-resumo-item"><i class="fas fa-crosshairs"></i><div><strong>Público</strong><span>Definido acima</span></div></div>
+                        <div class="rf-resumo-item"><i class="fas fa-clock"></i><div><strong>Ativação</strong><span>~10 minutos</span></div></div>
+                        <div class="rf-resumo-item"><i class="fas fa-shield-alt"></i><div><strong>Garantia</strong><span>Resultado ou reembolso</span></div></div>
+                    </div>
+                    <button type="submit" class="btn-primary btn-submit-campaign"><i class="fas fa-paper-plane"></i> Enviar para Aprovação</button>
+                </form>
+            </div>
+
+            <!-- PAGAMENTOS -->
+            <div class="page-content hidden" id="page-pagamentos">
+                <div class="payments-user-grid">
+                    <div class="card"><div class="card-header"><h3><i class="fas fa-crown"></i> Assinatura</h3></div><div class="card-body">
+                        <div class="sub-plan"><span class="tag premium" style="font-size:14px;padding:6px 16px">Premium</span><div class="sub-price">R$ 197<span>/mês</span></div></div>
+                        <div class="sub-details">
+                            <div class="sub-row"><span>Próximo pagamento:</span><strong>18/09/2026</strong></div>
+                            <div class="sub-row"><span>Forma:</span><strong>PIX</strong></div>
+                            <div class="sub-row"><span>Status:</span><span style="color:var(--secondary)"><i class="fas fa-check-circle"></i> Em dia</span></div>
+                        </div>
+                    </div></div>
+                    <div class="card"><div class="card-header"><h3><i class="fas fa-plus-circle"></i> Solicitar Campanha</h3></div><div class="card-body">
+                        <div class="form-group"><label class="form-label">Valor (R$)</label><input class="form-input" type="number" placeholder="Ex: 2000" id="campaignAmount"></div>
+                        <button class="btn-primary" onclick="requestPix()"><i class="fas fa-qrcode"></i> Gerar PIX</button>
+                        <div class="pix-result hidden" id="pixResult">
+                            <div class="pix-qr-box"><i class="fas fa-qrcode" style="font-size:60px;color:var(--primary-light)"></i></div>
+                            <div class="pix-copy-box"><input class="form-input" value="00020126360014BR.GOV.BCB.PIX0136iaxo@email.com52040000530398654052000.00582BR5925IAXO Feed Administracao6009SAO PAULO62070503***6304" readonly id="pixCode"><button class="btn-sm" onclick="document.getElementById('pixCode').select();document.execCommand('copy');showToast('PIX copiado!')"><i class="fas fa-copy"></i></button></div>
+                        </div>
+                    </div></div>
+                    <div class="card" style="grid-column:1/-1;max-width:780px"><div class="card-header"><h3><i class="fas fa-history"></i> Histórico</h3></div><div class="card-body" style="padding:0">
+                        <table class="data-table"><thead><tr><th>Data</th><th>Tipo</th><th>Valor</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>18/08</td><td>Mensalidade</td><td><strong>R$ 197</strong></td><td><span class="status-badge active">Pago</span></td></tr>
+                                <tr><td>15/08</td><td>Campanha</td><td><strong>R$ 2.000</strong></td><td><span class="status-badge active">Pago</span></td></tr>
+                                <tr><td>18/07</td><td>Mensalidade</td><td><strong>R$ 197</strong></td><td><span class="status-badge active">Pago</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div></div>
+                </div>
+            </div>
+
+            <!-- CHAT -->
+            <div class="page-content hidden" id="page-chat">
+                <div class="chat-layout">
+                    <div class="chat-sidebar"><h3>Suporte</h3><div class="chat-contact active"><div class="avatar-circle small" style="background:var(--gradient-1)"><i class="fas fa-headset" style="font-size:14px"></i></div><div class="contact-info"><strong>Suporte IAXO</strong><span>Online</span></div><span class="online-dot"></span></div></div>
+                    <div class="chat-main">
+                        <div class="chat-header-bar"><div class="avatar-circle small" style="background:var(--gradient-1)"><i class="fas fa-headset" style="font-size:14px"></i></div><div><strong>Suporte IAXO</strong><span class="online-status"><i class="fas fa-circle"></i> Online</span></div></div>
+                        <div class="chat-messages" id="userChatMessages">
+                            <div class="chat-system-msg">Bem-vindo ao suporte IAXO!</div>
+                            <div class="chat-message received"><div class="message-bubble">Olá Carlos! Como posso ajudar?</div><span class="message-time">14:00</span></div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" class="chat-input" placeholder="Mensagem..." id="userChatInput" onkeypress="if(event.key==='Enter')sendUserChat()">
+                            <button class="chat-send" onclick="sendUserChat()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/firebase-services.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../js/user.js"></script>
+</body>
+</html>

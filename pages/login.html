@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - IAXO Feed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6C3CE1; --primary-light: #8B5CF6; --secondary: #06D6A0; --accent: #FF6B6B; --bg: #050510; --bg-card: #10102A; --text: #FFFFFF; --text-2: #A0A0C8; --text-3: #5C5C80; --border: #1E1E42; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        body::before { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 40%, rgba(108,60,225,0.12) 0%, transparent 50%); }
+        .card { width: 100%; max-width: 420px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 44px 36px; position: relative; z-index: 2; }
+        .logo { text-align: center; margin-bottom: 32px; }
+        .logo a { text-decoration: none; font-size: 26px; font-weight: 800; color: var(--text); display: inline-flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; }
+        .accent { color: var(--secondary); font-weight: 500; }
+        h2 { text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+        .subtitle { text-align: center; color: var(--text-3); font-size: 14px; margin-bottom: 28px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 6px; }
+        .input-wrap { position: relative; }
+        .input-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-3); font-size: 15px; }
+        .form-input { width: 100%; padding: 12px 14px 12px 42px; background: rgba(30,30,66,0.5); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: 0.3s; }
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,60,225,0.15); }
+        .form-input::placeholder { color: var(--text-3); }
+        .form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; font-size: 13px; }
+        .form-options label { display: flex; align-items: center; gap: 6px; color: var(--text-2); cursor: pointer; }
+        .form-options a { color: var(--primary-light); text-decoration: none; font-weight: 500; }
+        .btn-primary { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(108,60,225,0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: wait; }
+        .divider { text-align: center; margin: 24px 0; position: relative; color: var(--text-3); font-size: 13px; }
+        .divider::before { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: var(--border); }
+        .divider span { background: var(--bg-card); padding: 0 16px; position: relative; }
+        .demo-box { margin-top: 20px; padding: 16px; background: rgba(108,60,225,0.06); border: 1px solid rgba(108,60,225,0.15); border-radius: 12px; }
+        .demo-box h4 { font-size: 11px; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .demo-btn { width: 100%; padding: 11px; margin-bottom: 8px; background: rgba(30,30,66,0.5); border: 1px solid var(--border); border-radius: 10px; color: var(--text-2); font-size: 13px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; }
+        .demo-btn:last-child { margin-bottom: 0; }
+        .demo-btn:hover { background: rgba(108,60,225,0.1); border-color: var(--primary); color: var(--text); }
+        .demo-btn i { color: var(--primary-light); width: 18px; text-align: center; }
+        .footer-link { text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-3); }
+        .footer-link a { color: var(--primary-light); text-decoration: none; font-weight: 600; }
+        .error-msg { color: var(--accent); font-size: 13px; text-align: center; margin-bottom: 12px; display: none; }
+        .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.6s linear infinite; margin-right: 8px; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <a href="../index.html">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                IAXO<span class="accent">Feed</span>
+            </a>
+        </div>
+        <h2>Bem-vindo de volta</h2>
+        <p class="subtitle">Entre na sua conta para gerenciar suas campanhas</p>
+        
+        <div class="error-msg" id="errorMsg"></div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label class="form-label">E-mail</label>
+                <div class="input-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-input" id="email" placeholder="seu@email.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Senha</label>
+                <div class="input-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-input" id="password" placeholder="••••••••" required>
+                </div>
+            </div>
+            <div class="form-options">
+                <label><input type="checkbox" style="accent-color:var(--primary)"> Lembrar</label>
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+            <button type="submit" class="btn-primary" id="loginBtn">Entrar</button>
+        </form>
+
+        <div class="demo-box">
+            <h4>Contas de demonstração</h4>
+            <button class="demo-btn" onclick="loginAs('admin')">
+                <i class="fas fa-shield-alt"></i> Entrar como Administrador
+            </button>
+            <button class="demo-btn" onclick="loginAs('user')">
+                <i class="fas fa-user"></i> Entrar como Usuário
+            </button>
+        </div>
+
+        <p class="footer-link">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/firebase-services.js"></script>
+    <script>
+        // Auto-redirect if already logged in
+        (function() {
+            var u = JSON.parse(localStorage.getItem('iaxo_user'));
+            if (u && u.role) {
+                window.location.href = u.role === 'admin' ? 'admin.html' : 'usuario.html';
+            }
+        })();
+
+        function showError(msg) {
+            var el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function setLoading(loading) {
+            var btn = document.getElementById('loginBtn');
+            if (loading) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Entrando...';
+            } else {
+                btn.disabled = false;
+                btn.textContent = 'Entrar';
+            }
+        }
+
+        function loginAs(role) {
+            var data = role === 'admin'
+                ? { role: 'admin', name: 'Administrador', email: 'admin@iaxo.com', business: 'IAXO Feed', plan: 'premium' }
+                : { role: 'user', name: 'Carlos Silva', email: 'carlos@email.com', business: 'Clínica Renova', plan: 'premium' };
+            localStorage.setItem('iaxo_user', JSON.stringify(data));
+            window.location.href = role === 'admin' ? 'admin.html' : 'usuario.html';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            var email = document.getElementById('email').value.trim();
+            var password = document.getElementById('password').value;
+            if (!email || !password) { showError('Preencha e-mail e senha.'); return; }
+
+            setLoading(true);
+            document.getElementById('errorMsg').style.display = 'none';
+
+            // Try Firebase auth first
+            auth.signInWithEmailAndPassword(email, password)
+                .then(function(cred) {
+                    return db.collection('users').doc(cred.user.uid).get().then(function(doc) {
+                        var userData = doc.exists ? doc.data() : {};
+                        var userObj = {
+                            uid: cred.user.uid,
+                            name: userData.name || cred.user.displayName || email,
+                            email: email,
+                            role: userData.role || 'user',
+                            business: userData.business || '',
+                            niche: userData.niche || '',
+                            plan: userData.plan || 'premium'
+                        };
+                        localStorage.setItem('iaxo_user', JSON.stringify(userObj));
+                        window.location.href = userObj.role === 'admin' ? 'admin.html' : 'usuario.html';
+                    });
+                })
+                .catch(function(err) {
+                    setLoading(false);
+                    // Fallback: check demo accounts
+                    if (email === 'admin@iaxo.com' && password === 'admin123') {
+                        loginAs('admin');
+                    } else if (email === 'carlos@email.com' && password === 'user123') {
+                        loginAs('user');
+                    } else if (err.code === 'auth/user-not-found') {
+                        showError('Conta não encontrada. Crie uma conta ou use as demonstrações.');
+                    } else if (err.code === 'auth/wrong-password') {
+                        showError('Senha incorreta. Tente novamente.');
+                    } else if (err.code === 'auth/too-many-requests') {
+                        showError('Muitas tentativas. Aguarde alguns minutos.');
+                    } else {
+                        showError('Erro ao entrar: ' + err.message);
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
