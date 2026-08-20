@@ -519,4 +519,10 @@ window.addEventListener('load', function () {
     initLeadSourceFilter();
     initCampaignFilter();
     loadAvatar();
+    // Hide admin link for non-admin users
+    var user = JSON.parse(localStorage.getItem('iaxo_user'));
+    var adminLink = document.getElementById('adminAccessLink');
+    if (adminLink && (!user || user.role !== 'admin')) {
+        adminLink.style.display = 'none';
+    }
 });

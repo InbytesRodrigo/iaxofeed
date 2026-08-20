@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iaxo-feed-v1';
+const CACHE_NAME = 'iaxo-ads-v2';
 const ASSETS = [
     '/',
     '/index.html',
