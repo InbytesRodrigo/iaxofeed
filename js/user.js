@@ -59,13 +59,36 @@ function showPage(page) {
     };
 
     document.getElementById('pageTitle').textContent = titles[page] || page;
+    // Close sidebar on mobile
+    if (window.innerWidth <= 768) {
+        var sb = document.getElementById('sidebar');
+        if (sb && sb.classList.contains('open')) {
+            sb.classList.remove('open');
+            var ov = document.getElementById('sidebarOverlay');
+            if (ov) ov.style.display = 'none';
+        }
+    }
 }
 
 /* ---------------------------------------------------------
    3. Toggle da sidebar (mobile)
    --------------------------------------------------------- */
 function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('open');
+    var sb = document.getElementById('sidebar');
+    sb.classList.toggle('open');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (sb.classList.contains('open')) {
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'sidebarOverlay';
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:99;display:none;';
+            overlay.onclick = function() { toggleSidebar(); };
+            document.body.appendChild(overlay);
+        }
+        overlay.style.display = 'block';
+    } else {
+        if (overlay) overlay.style.display = 'none';
+    }
 }
 
 /* ---------------------------------------------------------

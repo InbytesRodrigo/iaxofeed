@@ -39,6 +39,30 @@
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(108,60,225,0.4); }
         .footer-link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-3); }
         .footer-link a { color: var(--primary-light); text-decoration: none; font-weight: 600; }
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .card { width: 100%; max-width: 100%; padding: 28px 18px; border-radius: 20px; margin: 0 10px; max-height: 100vh; overflow-y: auto; }
+            .logo a { font-size: 22px; }
+            .logo { margin-bottom: 20px; }
+            h2 { font-size: 20px; margin-bottom: 4px; }
+            .subtitle { font-size: 12px; margin-bottom: 18px; }
+            .plan-box { padding: 14px; margin-bottom: 18px; }
+            .plan-box h4 { font-size: 12px; }
+            .plan-price { font-size: 24px; margin-bottom: 6px; }
+            .plan-price span { font-size: 12px; }
+            .plan-features li { font-size: 12px; padding: 2px 0; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .form-group { margin-bottom: 12px; }
+            .form-label { font-size: 12px; margin-bottom: 4px; }
+            .form-input, .form-select { padding: 12px 14px; font-size: 14px; border-radius: 12px; }
+            .btn-primary { padding: 13px; font-size: 14px; border-radius: 12px; }
+            .footer-link { font-size: 12px; margin-top: 16px; }
+        }
+        @media (max-width: 400px) {
+            .card { padding: 24px 14px; margin: 0 6px; }
+            h2 { font-size: 18px; }
+            .plan-price { font-size: 22px; }
+        }
     </style>
 </head>
 <body>

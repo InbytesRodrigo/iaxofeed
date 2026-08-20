@@ -150,7 +150,113 @@
 .chat-system-msg{text-align:center;padding:8px;font-size:12px;color:var(--text-muted);background:rgba(42,42,74,0.3);border-radius:20px;margin:0 auto;width:fit-content}
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
    ========================================== */
-@media(max-width:1024px){.campaigns-grid-compact{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.campaigns-grid-compact{grid-template-columns:1fr}.dashboard-grid-user{grid-template-columns:1fr}.payments-user-grid{grid-template-columns:1fr}.rf-resumo{grid-template-columns:repeat(2,1fr)}.request-top{flex-direction:column;gap:16px;text-align:center}.tg-row{grid-template-columns:1fr}.leads-summary{flex-wrap:wrap}.media-mode-toggle{flex-direction:column}}
+@media (max-width: 1200px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .campaigns-grid { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================
+   RESPONSIVE - MOBILE APP-LIKE
+   ========================================== */
+@media (max-width: 768px) {
+    /* Sidebar overlay */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: 4px 0 30px rgba(0,0,0,0.5);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+    
+    /* Topbar compact */
+    .topbar { padding: 12px 16px; }
+    .page-title { font-size: 18px; }
+    .topbar-search { display: none; }
+    .topbar-actions { gap: 6px; }
+    
+    /* Page content */
+    .page-content { padding: 16px; }
+    
+    /* Stats - 2 cols */
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat-card { padding: 14px; gap: 10px; }
+    .stat-icon { width: 44px; height: 44px; border-radius: 12px; font-size: 18px; }
+    .stat-value { font-size: 22px; }
+    .stat-label { font-size: 11px; }
+    
+    /* Campaigns - single column, compact cards */
+    .campaigns-grid { grid-template-columns: 1fr; gap: 12px; }
+    .campaign-card { border-radius: 14px; }
+    .campaign-image { height: 120px; }
+    .campaign-info { padding: 12px; }
+    .campaign-info h3 { font-size: 14px; }
+    .campaign-meta span { font-size: 11px; }
+    
+    /* Leads table */
+    .table-container { border-radius: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .leads-table th { padding: 10px 12px; font-size: 10px; white-space: nowrap; }
+    .leads-table td { padding: 10px 12px; font-size: 12px; white-space: nowrap; }
+    
+    /* Payments */
+    .payments-grid { grid-template-columns: 1fr; gap: 12px; }
+    .payment-amount { font-size: 24px; }
+    
+    /* Chat - full width */
+    .chat-section { flex-direction: column; height: calc(100vh - 100px); }
+    .chat-sidebar { width: 100%; max-height: 200px; }
+    .chat-messages { padding: 12px; }
+    .chat-input-area { padding: 12px; }
+    .chat-input { font-size: 14px; padding: 10px 14px; }
+    
+    /* Solicitar Campanha - full width */
+    .request-steps { gap: 4px; }
+    .request-step { font-size: 11px; padding: 4px 8px; }
+    .request-form { padding: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { font-size: 12px; }
+    .form-group input, .form-group select, .form-group textarea {
+        font-size: 14px; padding: 10px 12px; border-radius: 10px;
+    }
+    .checkbox-group { grid-template-columns: 1fr; gap: 8px; }
+    .btn-submit { width: 100%; padding: 14px; font-size: 14px; }
+    .btn-back { padding: 10px 16px; font-size: 13px; }
+    .btn-next { padding: 10px 20px; font-size: 13px; }
+    .step-nav { padding: 12px 16px; }
+    
+    /* File upload */
+    .file-upload { padding: 20px; border-width: 2px; }
+    .file-upload i { font-size: 28px; }
+    
+    /* Sidebar links - mobile */
+    .sidebar-links a {
+        padding: 10px 20px;
+        font-size: 13px;
+        gap: 10px;
+    }
+    .sidebar-links a i { width: 18px; text-align: center; }
+    
+    /* User info in sidebar */
+    .user-info { padding: 12px 20px; }
+    .user-avatar { width: 40px; height: 40px; font-size: 16px; }
+    .user-name { font-size: 14px; }
+    .user-plan { font-size: 11px; }
+    
+    /* Notif */
+    .notif-btn { width: 36px; height: 36px; }
+}
+
+/* ==========================================
+   RESPONSIVE - VERY SMALL
+   ========================================== */
+@media (max-width: 400px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-card { padding: 12px; }
+    .stat-value { font-size: 20px; }
+    .page-title { font-size: 16px; }
+    .request-steps { flex-wrap: wrap; justify-content: center; }
+}
