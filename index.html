@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050510">
     <title>IAXO Feed - Gestão de Tráfego Inteligente</title>
     <link rel="stylesheet" href="css/landing.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -527,6 +530,26 @@
     </footer>
 
     <div class="notif-container" id="notifContainer"></div>
+
+    <!-- Bottom Navigation (Mobile Only) -->
+    <nav class="bottom-nav-landing" id="bottomNav">
+        <a href="#feed-section" class="bni active">
+            <i class="fas fa-fire"></i>
+            <span>Feed</span>
+        </a>
+        <a href="#features" class="bni">
+            <i class="fas fa-th-large"></i>
+            <span>Recursos</span>
+        </a>
+        <a href="#how" class="bni">
+            <i class="fas fa-play-circle"></i>
+            <span>Como Funciona</span>
+        </a>
+        <a href="pages/login.html" class="bni">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+    </nav>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>

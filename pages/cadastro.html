@@ -2,132 +2,202 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050510">
     <title>Cadastro - IAXO Feed</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #6C3CE1; --primary-light: #8B5CF6; --secondary: #06D6A0; --bg: #050510; --bg-card: #10102A; --text: #FFFFFF; --text-2: #A0A0C8; --text-3: #5C5C80; --border: #1E1E42; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        body::before { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 70% 60%, rgba(6,214,160,0.08) 0%, transparent 50%); }
-        .card { width: 100%; max-width: 500px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; position: relative; z-index: 2; max-height: 95vh; overflow-y: auto; }
-        .card::-webkit-scrollbar { width: 4px; }
-        .card::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        .logo { text-align: center; margin-bottom: 28px; }
-        .logo a { text-decoration: none; font-size: 26px; font-weight: 800; color: var(--text); display: inline-flex; align-items: center; gap: 8px; }
-        .logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; }
-        .accent { color: var(--secondary); font-weight: 500; }
-        h2 { text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
-        .subtitle { text-align: center; color: var(--text-3); font-size: 14px; margin-bottom: 24px; }
-        .plan-box { background: rgba(108,60,225,0.08); border: 1px solid rgba(108,60,225,0.2); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
-        .plan-box h4 { color: var(--primary-light); font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-        .plan-price { font-size: 28px; font-weight: 800; color: var(--secondary); margin-bottom: 8px; }
-        .plan-price span { font-size: 14px; font-weight: 400; color: var(--text-3); }
-        .plan-features { list-style: none; }
-        .plan-features li { font-size: 13px; color: var(--text-2); padding: 3px 0; display: flex; align-items: center; gap: 8px; }
-        .plan-features li i { color: var(--secondary); font-size: 11px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .form-group { margin-bottom: 14px; }
-        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 6px; }
-        .form-input, .form-select { width: 100%; padding: 11px 14px; background: rgba(30,30,66,0.5); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: 0.3s; }
-        .form-input:focus, .form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,60,225,0.15); }
-        .form-input::placeholder { color: var(--text-3); }
-        .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235C5C80' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
-        .form-select option { background: var(--bg-card); color: var(--text); }
-        .btn-primary { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(108,60,225,0.4); }
-        .footer-link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-3); }
-        .footer-link a { color: var(--primary-light); text-decoration: none; font-weight: 600; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --primary: #6C3CE1; --primary-light: #8B5CF6; --secondary: #06D6A0; --accent: #FF6B6B; --bg: #050510; --bg-card: #10102A; --bg-card-2: #161636; --text: #FFFFFF; --text-2: #A0A0C8; --text-3: #5C5C80; --border: #1E1E42; --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px); }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+        body::before { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 70% 60%, rgba(6,214,160,0.08) 0%, transparent 50%); pointer-events: none; }
+
+        /* ===== APP TOP BAR ===== */
+        .app-topbar { display: flex; align-items: center; justify-content: center; padding: calc(var(--safe-top) + 10px) 16px 10px; position: relative; z-index: 10; }
+        .app-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .app-logo-icon { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; }
+        .app-logo-text { font-size: 20px; font-weight: 800; color: var(--text); }
+        .app-logo-text span { color: var(--secondary); font-weight: 500; }
+
+        /* ===== MAIN SCROLL AREA ===== */
+        .app-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; align-items: center; padding: 12px 20px calc(var(--safe-bottom) + 70px); }
+
+        /* ===== PLAN BOX ===== */
+        .plan-card { width: 100%; max-width: 400px; background: linear-gradient(135deg, rgba(108,60,225,0.12), rgba(6,214,160,0.08)); border: 1px solid rgba(108,60,225,0.25); border-radius: 20px; padding: 20px; margin-bottom: 16px; }
+        .plan-card .plan-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .plan-card .plan-head i { color: var(--secondary); font-size: 16px; }
+        .plan-card .plan-head h3 { font-size: 14px; font-weight: 700; color: var(--text); }
+        .plan-card .plan-price { font-size: 32px; font-weight: 800; color: var(--secondary); margin-bottom: 4px; }
+        .plan-card .plan-price span { font-size: 13px; font-weight: 400; color: var(--text-3); }
+        .plan-card .plan-sub { font-size: 12px; color: var(--text-3); margin-bottom: 12px; }
+        .plan-feats { display: flex; flex-wrap: wrap; gap: 6px; }
+        .plan-feat { display: flex; align-items: center; gap: 5px; background: rgba(6,214,160,0.08); border: 1px solid rgba(6,214,160,0.15); border-radius: 20px; padding: 5px 10px; font-size: 11px; color: var(--text-2); }
+        .plan-feat i { color: var(--secondary); font-size: 10px; }
+
+        /* ===== FORM CARD ===== */
+        .form-card { width: 100%; max-width: 400px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 28px 22px 24px; }
+        .form-card h2 { font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+        .form-card .sub { text-align: center; color: var(--text-3); font-size: 12px; margin-bottom: 22px; }
+
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .field { margin-bottom: 12px; }
+        .field-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; padding-left: 2px; }
+        .field-input, .field-select { width: 100%; padding: 12px 14px; background: rgba(30,30,66,0.6); border: 1px solid var(--border); border-radius: 14px; color: var(--text); font-size: 15px; font-family: 'Inter', sans-serif; outline: none; transition: 0.25s; -webkit-appearance: none; }
+        .field-input:focus, .field-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,60,225,0.15); }
+        .field-input::placeholder { color: var(--text-3); }
+        .field-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235C5C80' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+        .field-select option { background: var(--bg-card); color: var(--text); }
+
+        .btn-register { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.25s; font-family: 'Inter', sans-serif; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-register:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(108,60,225,0.4); }
+        .btn-register:active { transform: scale(0.98); }
+        .btn-register:disabled { opacity: 0.6; cursor: wait; }
+
+        .error-msg { color: var(--accent); font-size: 12px; text-align: center; margin-bottom: 10px; display: none; background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.2); border-radius: 10px; padding: 10px; }
+
+        .goto-login { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-3); padding-bottom: 20px; }
+        .goto-login a { color: var(--primary-light); text-decoration: none; font-weight: 600; }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,30,0.95); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0 calc(var(--safe-bottom) + 6px); z-index: 100; }
+        .bn-item { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: var(--text-3); font-size: 10px; font-weight: 500; padding: 4px 16px; border-radius: 12px; transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+        .bn-item i { font-size: 20px; transition: 0.2s; }
+        .bn-item.active { color: var(--primary-light); }
+        .bn-item.active i { color: var(--primary-light); transform: scale(1.1); }
+        .bn-item:active { transform: scale(0.9); }
+
+        /* ===== DESKTOP ===== */
+        @media (min-width: 769px) {
+            body { justify-content: center; align-items: center; overflow: auto; }
+            .app-topbar { display: none; }
+            .bottom-nav { display: none; }
+            .app-body { padding: 40px 20px; overflow: visible; }
+            .form-card { padding: 40px 36px; }
+        }
+
+        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-            body { padding: 0; }
-            .card { width: 100%; max-width: 100%; padding: 28px 18px; border-radius: 20px; margin: 0 10px; max-height: 100vh; overflow-y: auto; }
-            .logo a { font-size: 22px; }
-            .logo { margin-bottom: 20px; }
-            h2 { font-size: 20px; margin-bottom: 4px; }
-            .subtitle { font-size: 12px; margin-bottom: 18px; }
-            .plan-box { padding: 14px; margin-bottom: 18px; }
-            .plan-box h4 { font-size: 12px; }
-            .plan-price { font-size: 24px; margin-bottom: 6px; }
-            .plan-price span { font-size: 12px; }
-            .plan-features li { font-size: 12px; padding: 2px 0; }
-            .form-row { grid-template-columns: 1fr; gap: 0; }
-            .form-group { margin-bottom: 12px; }
-            .form-label { font-size: 12px; margin-bottom: 4px; }
-            .form-input, .form-select { padding: 12px 14px; font-size: 14px; border-radius: 12px; }
-            .btn-primary { padding: 13px; font-size: 14px; border-radius: 12px; }
-            .footer-link { font-size: 12px; margin-top: 16px; }
+            .form-card { border-radius: 20px; }
+            .form-card h2 { font-size: 18px; }
+            .field-input, .field-select { font-size: 16px; }
+            .row { grid-template-columns: 1fr; gap: 0; }
         }
         @media (max-width: 400px) {
-            .card { padding: 24px 14px; margin: 0 6px; }
-            h2 { font-size: 18px; }
-            .plan-price { font-size: 22px; }
+            .form-card { padding: 24px 16px 20px; }
+            .plan-card { padding: 16px; }
+            .plan-card .plan-price { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="logo">
-            <a href="../index.html">
-                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
-                IAXO<span class="accent">Feed</span>
-            </a>
-        </div>
-        <h2>Crie sua conta</h2>
-        <p class="subtitle">Comece a gerar leads qualificados hoje mesmo</p>
-        
-        <div class="plan-box">
-            <h4><i class="fas fa-crown"></i> Plano Premium</h4>
-            <div class="plan-price">R$ 197<span>/mês</span></div>
-            <ul class="plan-features">
-                <li><i class="fas fa-check"></i> Painel completo de leads</li>
-                <li><i class="fas fa-check"></i> Campanhas ilimitadas</li>
-                <li><i class="fas fa-check"></i> Suporte via chat</li>
-                <li><i class="fas fa-check"></i> Métricas em tempo real</li>
-            </ul>
-        </div>
-        
-        <form onsubmit="handleRegister(event)">
-            <div class="form-row">
-                <div class="form-group"><label class="form-label">Nome completo</label><input class="form-input" id="regName" placeholder="Seu nome" required></div>
-                <div class="form-group"><label class="form-label">Telefone</label><input class="form-input" id="regPhone" placeholder="(11) 99999-9999" required></div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">E-mail</label>
-                <input class="form-input" id="regEmail" type="email" placeholder="seu@email.com" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label">WhatsApp (para receber leads)</label>
-                <input class="form-input" id="regWhats" placeholder="5511999999999" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group"><label class="form-label">Nome do Negócio</label><input class="form-input" id="regBusiness" placeholder="Ex: Clínica Renova" required></div>
-                <div class="form-group">
-                    <label class="form-label">Segmento</label>
-                    <select class="form-select form-input" id="regNiche" required>
-                        <option value="">Selecione</option>
-                        <option>Saúde / Clínicas</option>
-                        <option>E-commerce</option>
-                        <option>Restaurante</option>
-                        <option>Imobiliário</option>
-                        <option>Educação</option>
-                        <option>Estética</option>
-                        <option>Tecnologia</option>
-                        <option>Finanças</option>
-                        <option>Outro</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group"><label class="form-label">Senha</label><input type="password" class="form-input" id="regPassword" placeholder="••••••••" required minlength="6"></div>
-                <div class="form-group"><label class="form-label">Confirmar senha</label><input type="password" class="form-input" id="regConfirm" placeholder="••••••••" required></div>
-            </div>
-            <div class="error-msg" id="regError" style="color:var(--accent);font-size:13px;text-align:center;margin-bottom:12px;display:none"></div>
-            <button type="submit" class="btn-primary" id="regBtn"><i class="fas fa-rocket"></i> Criar Conta</button>
-        </form>
-
-        <p class="footer-link">Já tem conta? <a href="login.html">Entrar</a></p>
+    <!-- App Top Bar -->
+    <div class="app-topbar">
+        <a href="../index.html" class="app-logo">
+            <div class="app-logo-icon"><i class="fas fa-bolt"></i></div>
+            <div class="app-logo-text">IAXO<span>Feed</span></div>
+        </a>
     </div>
+
+    <!-- Main Content -->
+    <div class="app-body">
+        <!-- Plan Card -->
+        <div class="plan-card">
+            <div class="plan-head">
+                <i class="fas fa-crown"></i>
+                <h3>Plano Premium</h3>
+            </div>
+            <div class="plan-price">R$ 197<span>/mês</span></div>
+            <p class="plan-sub">Acesso completo a tudo</p>
+            <div class="plan-feats">
+                <div class="plan-feat"><i class="fas fa-check"></i> Leads ilimitados</div>
+                <div class="plan-feat"><i class="fas fa-check"></i> Campanhas</div>
+                <div class="plan-feat"><i class="fas fa-check"></i> Suporte chat</div>
+                <div class="plan-feat"><i class="fas fa-check"></i> Métricas real</div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <h2>Crie sua conta</h2>
+            <p class="sub">Comece a gerar leads qualificados hoje</p>
+
+            <div class="error-msg" id="regError"></div>
+
+            <form onsubmit="handleRegister(event)">
+                <div class="row">
+                    <div class="field">
+                        <label class="field-label">Nome</label>
+                        <input class="field-input" id="regName" placeholder="Seu nome" required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label">Telefone</label>
+                        <input class="field-input" id="regPhone" placeholder="(11) 99999-9999" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field-label">E-mail</label>
+                    <input class="field-input" id="regEmail" type="email" placeholder="seu@email.com" required autocomplete="email">
+                </div>
+                <div class="field">
+                    <label class="field-label">WhatsApp (para receber leads)</label>
+                    <input class="field-input" id="regWhats" placeholder="5511999999999" required>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label class="field-label">Negócio</label>
+                        <input class="field-input" id="regBusiness" placeholder="Clínica Renova" required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label">Segmento</label>
+                        <select class="field-select" id="regNiche" required>
+                            <option value="">Selecione</option>
+                            <option>Saúde / Clínicas</option>
+                            <option>E-commerce</option>
+                            <option>Restaurante</option>
+                            <option>Imobiliário</option>
+                            <option>Educação</option>
+                            <option>Estética</option>
+                            <option>Tecnologia</option>
+                            <option>Finanças</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label class="field-label">Senha</label>
+                        <input type="password" class="field-input" id="regPassword" placeholder="••••••••" required minlength="6">
+                    </div>
+                    <div class="field">
+                        <label class="field-label">Confirmar</label>
+                        <input type="password" class="field-input" id="regConfirm" placeholder="••••••••" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-register" id="regBtn"><i class="fas fa-rocket"></i> Criar Conta</button>
+            </form>
+
+            <p class="goto-login">Já tem conta? <a href="login.html">Entrar</a></p>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="../index.html" class="bn-item">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+        <a href="login.html" class="bn-item">
+            <i class="fas fa-sign-in-alt"></i>
+            Login
+        </a>
+        <a href="cadastro.html" class="bn-item active">
+            <i class="fas fa-user-plus"></i>
+            Cadastro
+        </a>
+    </nav>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
@@ -153,7 +223,7 @@
 
             var btn = document.getElementById('regBtn');
             btn.disabled = true;
-            btn.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:white;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:8px"></span> Criando...';
+            btn.innerHTML = '<span class="spinner"></span> Criando...';
             errEl.style.display = 'none';
 
             auth.createUserWithEmailAndPassword(email, password)
@@ -204,6 +274,6 @@
                 });
         }
     </script>
-    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+    <style>@keyframes spin { to { transform: rotate(360deg); } } .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 8px; }</style>
 </body>
 </html>

@@ -186,3 +186,24 @@ window.addEventListener('load', function() {
     setTimeout(randomNotif, 5000);
     setInterval(randomNotif, 12000);
 });
+
+// Bottom nav active state on scroll
+var bniLinks = document.querySelectorAll('.bni[href^="#"]');
+if (bniLinks.length) {
+    var sectionIds = [];
+    bniLinks.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && href.startsWith('#')) sectionIds.push(href.substring(1));
+    });
+    window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY + 120;
+        var current = sectionIds[0];
+        for (var i = 0; i < sectionIds.length; i++) {
+            var el = document.getElementById(sectionIds[i]);
+            if (el && el.offsetTop <= scrollY) current = sectionIds[i];
+        }
+        bniLinks.forEach(function(link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    }, { passive: true });
+}
